@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/header_layout" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <com.app.trendipeople.utils.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:padding="@dimen/dp10"
+                    android:text="WALLET BALANCE"
+                    android:textColor="@color/textcolordark"
+                    android:textSize="@dimen/text_size_15"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:padding="@dimen/dp10">
+
+                    <ImageView
+                        android:id="@+id/img_dollar"
+                        android:layout_width="25dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/blue_pound" />
+
+                    <com.app.trendipeople.utils.CustomTextView
+                        android:id="@+id/text_wallet_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/img_dollar"
+                        android:paddingLeft="@dimen/dp5"
+                        android:text="45.97"
+                        android:textColor="@color/text_blue"
+                        android:textSize="@dimen/text_size_30"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <RelativeLayout android:id="@+id/rl_send_money"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:background="@drawable/blue_button_selecor"
+                    android:visibility="visible">
+
+                    <com.app.trendipeople.utils.CustomTextView
+                        android:id="@+id/text_send"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="@dimen/dp5"
+                        android:text="Send Money"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_15"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp10"
+                        android:layout_height="@dimen/dp10"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_toRightOf="@+id/text_send"
+                        android:src="@drawable/white_arrow" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:background="@color/view_color" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_services"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp5" />
+
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

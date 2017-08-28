@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_save"
+        android:layout_below="@+id/header"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:mcv_tileHeight="@dimen/dp30" />
+
+
+            <RelativeLayout
+                android:id="@+id/mLlStartTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp10">
+
+                <com.app.trendipeople.utils.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Start Time" />
+
+                <com.app.trendipeople.utils.CustomTextView
+                    android:id="@+id/mTvStartTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:hint="9:00 am"
+                    android:layout_marginRight="@dimen/dp5"
+                    android:padding="@dimen/dp5"
+                    android:textColor="@color/textcolordark"
+                    android:textColorHint="@color/text_hint_color" />
+
+
+            </RelativeLayout>
+            <!--Start Time end-->
+
+            <!--End Time-->
+            <RelativeLayout
+                android:id="@+id/mLlEndTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="10dp">
+
+                <com.app.trendipeople.utils.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="End Time" />
+
+                <com.app.trendipeople.utils.CustomTextView
+                    android:id="@+id/mTvEndTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:hint="5:00 pm"
+                    android:layout_marginRight="@dimen/dp5"
+                    android:padding="@dimen/dp5"
+                    android:textColor="@color/textcolordark"
+                    android:textColorHint="@color/text_hint_color" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btnAdd"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@drawable/blue_button_selecor"
+                android:text="Add Time"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_14" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_services"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/dp5" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/blue_button_selecor"
+        android:text="Save"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_15" />
+
+</RelativeLayout>

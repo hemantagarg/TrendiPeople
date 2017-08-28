@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp5"
+        android:padding="@dimen/dp5">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/checkbox">
+
+
+            <com.app.trendipeople.utils.CustomTextView
+                android:id="@+id/text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp5"
+                android:text=""
+                android:textColor="@color/textcolordark"
+                android:textSize="@dimen/text_size_14" />
+
+            <com.app.trendipeople.utils.CustomTextView
+                android:id="@+id/text_subcatName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_title"
+                android:paddingLeft="@dimen/dp5"
+                android:text=""
+                android:textColor="@color/textcolordark"
+                android:textSize="@dimen/text_size_14" />
+
+            <com.app.trendipeople.utils.CustomTextView
+                android:id="@+id/text_serviceName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_subcatName"
+                android:paddingLeft="@dimen/dp5"
+                android:text=""
+                android:textColor="@color/textcolordark"
+                android:textSize="@dimen/text_size_14" />
+
+            <com.app.trendipeople.utils.CustomTextView
+                android:id="@+id/text_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_serviceName"
+                android:paddingLeft="@dimen/dp5"
+                android:text=""
+                android:textColor="@color/textcolordark"
+                android:textSize="@dimen/text_size_12" />
+        </RelativeLayout>
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/view_color" />
+</LinearLayout>

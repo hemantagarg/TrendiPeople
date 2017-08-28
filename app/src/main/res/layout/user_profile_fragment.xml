@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/header_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/rl_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp">
+
+                    <ImageView
+                        android:id="@+id/image_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/vendor_bg"
+                        android:scaleType="fitXY" />
+
+                    <View
+                        android:id="@+id/view_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#7722808f" />
+
+                    <ImageView
+                        android:id="@+id/image_edit"
+                        android:layout_width="@dimen/dp25"
+                        android:layout_height="@dimen/dp25"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="@dimen/dp5"
+                        android:src="@drawable/edit" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/image_user"
+                    android:layout_width="@dimen/dp100"
+                    android:layout_height="@dimen/dp100"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:src="@drawable/user" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/dp20">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp20">
+
+                    <EditText
+                        android:id="@+id/edtName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Name"
+                        android:padding="@dimen/dp10"
+                        android:singleLine="true"
+                        android:textColor="@color/textcolordark"
+                        android:textSize="@dimen/text_size_14" />
+
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5">
+
+                    <EditText
+                        android:id="@+id/edtmobilenumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:hint="Mobile Number"
+                        android:padding="@dimen/dp10"
+                        android:singleLine="true"
+                        android:textColor="@color/textcolordark"
+                        android:textSize="@dimen/text_size_14" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5">
+
+                    <EditText
+                        android:id="@+id/edtEmailId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:hint="Email Address"
+                        android:inputType="textEmailAddress"
+                        android:padding="@dimen/dp10"
+                        android:singleLine="true"
+                        android:textColor="@color/textcolordark"
+                        android:textSize="@dimen/text_size_14" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5">
+
+                    <EditText
+                        android:id="@+id/edtAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Address"
+                        android:padding="@dimen/dp10"
+                        android:textColor="@color/textcolordark"
+                        android:textSize="@dimen/text_size_14" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5">
+
+                    <EditText
+                        android:id="@+id/edtWebsite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Website"
+                        android:padding="@dimen/dp10"
+                        android:singleLine="true"
+                        android:textColor="@color/textcolordark"
+                        android:textSize="@dimen/text_size_14" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp5">
+
+                    <EditText
+                        android:id="@+id/edtProfileDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:hint="Profile Description"
+                        android:padding="@dimen/dp10"
+                        android:textColor="@color/textcolordark"
+                        android:textSize="@dimen/text_size_14" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <com.app.trendipeople.utils.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:layout_marginRight="@dimen/dp5"
+                        android:layout_weight="1"
+                        android:text="Gender : "
+                        android:textColor="@color/textcolordark"
+                        android:textSize="@dimen/text_size_16"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGender"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <RadioButton
+                            android:id="@+id/radio_male"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Male" />
+
+                        <RadioButton
+                            android:id="@+id/radio_female"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Female" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.AppCompatCheckBox
+                        android:id="@+id/freelancerCheckbox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Become a freelancer" />
+
+                    <LinearLayout
+                        android:id="@+id/llFrelancer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:id="@+id/rl_category"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.app.trendipeople.utils.CustomTextView
+                                android:id="@+id/text_select_category"
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:layout_margin="@dimen/dp10"
+                                android:gravity="bottom"
+                                android:hint="@string/select_category"
+                                android:textColor="@color/textcolordark"
+                                android:textSize="@dimen/text_size_13" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_below="@+id/text_select_category"
+                                android:background="@color/view_color" />
+
+                        </RelativeLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp5">
+
+                            <EditText
+                                android:id="@+id/edtbusinessname"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Business Name"
+                                android:padding="@dimen/dp10"
+                                android:singleLine="true"
+                                android:textColor="@color/textcolordark"
+                                android:textSize="@dimen/text_size_14" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp5">
+
+                            <EditText
+                                android:id="@+id/edtbusinessEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Business Email"
+                                android:padding="@dimen/dp10"
+                                android:singleLine="true"
+                                android:textColor="@color/textcolordark"
+                                android:textSize="@dimen/text_size_14" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp5">
+
+                            <EditText
+                                android:id="@+id/edtbusinessAddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Business Address"
+                                android:padding="@dimen/dp10"
+                                android:textColor="@color/textcolordark"
+                                android:textSize="@dimen/text_size_14" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp5">
+
+                            <EditText
+                                android:id="@+id/edtlanguage"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Language (Comma seprated)"
+                                android:padding="@dimen/dp10"
+                                android:textColor="@color/textcolordark"
+                                android:textSize="@dimen/text_size_14" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp5">
+
+                            <EditText
+                                android:id="@+id/edtQualification"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Qualification"
+                                android:padding="@dimen/dp10"
+                                android:textColor="@color/textcolordark"
+                                android:textSize="@dimen/text_size_14" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp5">
+
+                            <EditText
+                                android:id="@+id/edtAbout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="About"
+                                android:padding="@dimen/dp10"
+                                android:singleLine="true"
+                                android:textColor="@color/textcolordark"
+                                android:textSize="@dimen/text_size_14" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp5">
+
+                            <EditText
+                                android:id="@+id/edtbusinessExp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Business Experience"
+                                android:padding="@dimen/dp10"
+                                android:singleLine="true"
+                                android:textColor="@color/textcolordark"
+                                android:textSize="@dimen/text_size_14" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp5">
+
+                            <EditText
+                                android:id="@+id/edtbusinessDesc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Business Description"
+                                android:padding="@dimen/dp10"
+                                android:singleLine="true"
+                                android:textColor="@color/textcolordark"
+                                android:textSize="@dimen/text_size_14" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_updateprofile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp20"
+                        android:background="@drawable/blue_button_selecor"
+                        android:text="Update Profile"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

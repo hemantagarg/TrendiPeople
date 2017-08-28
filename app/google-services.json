@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "828430803824",
+    "firebase_url": "https://trendypeople-6677c.firebaseio.com",
+    "project_id": "trendypeople-6677c",
+    "storage_bucket": "trendypeople-6677c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828430803824:android:790a7c1a176b3979",
+        "android_client_info": {
+          "package_name": "com.app.trendipeople"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "828430803824-iks6oprrlpb05iu1g4tvg8f2o44hheo7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR_NWIESzD2kmHc8VT0y_Vnz4Z6ms2cEI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

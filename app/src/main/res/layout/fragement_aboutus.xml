@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:orientation="vertical">
+
+        <com.app.trendipeople.utils.CustomTextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About"
+            android:textColor="@color/text_blue"
+            android:textSize="@dimen/text_size_15"
+            android:textStyle="bold" />
+
+        <com.app.trendipeople.utils.CustomTextView
+            android:id="@+id/about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/textcolordark"
+            android:textSize="@dimen/text_size_15"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <com.app.trendipeople.utils.CustomTextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/textcolordark"
+            android:textSize="@dimen/text_size_15" />
+
+        <com.app.trendipeople.utils.CustomTextView
+            android:id="@+id/freelanceraboutus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textcolordark"
+            android:textSize="@dimen/text_size_14" />
+
+        <com.app.trendipeople.utils.CustomTextView
+            android:id="@+id/freelancerexperience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textcolordark"
+            android:textSize="@dimen/text_size_14" />
+
+
+        <com.app.trendipeople.utils.CustomTextView
+            android:id="@+id/freelanceraddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textcolordark"
+            android:textSize="@dimen/text_size_14" />
+
+        <com.app.trendipeople.utils.CustomTextView
+            android:id="@+id/freelancerDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textcolordark"
+            android:textSize="@dimen/text_size_14" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

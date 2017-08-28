@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    /*
+    * San Francisco Text
+    */
+   <!-- <string name="SanFranciscoText_Regular">sanfranciscotext_regular.ttf</string>
+    <string name="SanFranciscoText_Light">sanfranciscotext_light.ttf</string>
+    <string name="SanFranciscoText_Bold">sanfranciscotext_bold.ttf</string>
+    <string name="SanFranciscoText_SemiBold">SanFranciscoText-Semibold</string>-->
+    /*
+    * Roboto Text
+    */
+   <!-- <string name="Roboto_Regular">Roboto-Regular.ttf</string>-->
+    <string name="Roboto_Bold">Roboto-Bold.ttf</string>
+    <string name="Roboto_Light">Roboto-Light.ttf</string>
+    /*
+    * SFUI Text
+    */
+    <!--<string name="SFUIText_Regular">sf-ui-text-regular.ttf</string>
+    <string name="SFUITextsemiBold">sfui-text-semibold.ttf</string>
+    <string name="SFUIText_Bold">SFUIText-Bold</string>
+    <string name="SFUIText_Medium">SFUIText-Medium</string>
+    <string name="SFUIText_Light">SFUIText-Light</string>
+
+
+    <string name="font_Family_medium">sans-serif-medium</string>-->
+</resources>

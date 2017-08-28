@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.app.trendipeople.activities.LoginActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dp20">
+
+
+            <ImageView
+                android:layout_width="@dimen/dp100"
+                android:layout_height="@dimen/dp100"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@drawable/logo" />
+
+
+            <com.app.trendipeople.utils.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/sign_in"
+                android:textColor="@color/text_blue"
+                android:textSize="@dimen/text_size_25"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@color/search_bg"
+                android:gravity="start"
+                android:hint="@string/hint_enter_email"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/dp14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:background="@color/view_color" />
+
+            <EditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/search_bg"
+                android:gravity="start"
+                android:hint="@string/hint_enter_password"
+                android:inputType="textPassword"
+                android:padding="@dimen/dp14" />
+
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp30"
+                android:background="@drawable/blue_button_selecor"
+                android:text="@string/log_in"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_15" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.app.trendipeople.utils.CustomTextView
+                    android:id="@+id/createAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingBottom="@dimen/dp10"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="@string/create_new_account"
+                    android:textColor="@color/text_blue"
+                    android:textSize="@dimen/text_size_13" />
+
+                <com.app.trendipeople.utils.CustomTextView
+                    android:id="@+id/forgotPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingBottom="@dimen/dp10"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="@string/forgot_password"
+                    android:textColor="@color/text_blue"
+                    android:textSize="@dimen/text_size_13" />
+
+            </RelativeLayout>
+
+
+            <com.app.trendipeople.utils.CustomTextView
+                android:id="@+id/textOr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp10"
+                android:text="@string/or_login_with"
+                android:textColor="@color/textcolordark"
+                android:textSize="@dimen/text_size_12" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/dp10"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/image_facebook"
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_weight="1.69"
+                    android:src="@drawable/fb_icon" />
+
+                <ImageView
+                    android:id="@+id/image_instagram"
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:src="@drawable/google_plus" />
+
+                <ImageView
+                    android:id="@+id/image_gmail"
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:src="@drawable/instagram" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

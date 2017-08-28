@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#06a5cc</color>
+    <color name="colorPrimaryDark">#068eaf</color>
+    <color name="colorAccent">#06a5cc</color>
+    <color name="dashboard_layoutbg_color">#99272727</color>
+    <color name="view_color">#80979797</color>
+    <color name="textcolordark">#444444</color>
+    <color name="search_bg">#f4f4f4</color>
+    <color name="white">#ffffff</color>
+    <color name="bottom_layout_selector">#bfc7c9</color>
+    <color name="text_blue">#06a7cc</color>
+    <color name="red">#ea412e</color>
+    <color name="row_color">#f9f9f9</color>
+    <color name="text_color_black">#000000</color>
+    <color name="text_hint_color">#777777</color>
+    <color name="question_color">#2792a4</color>
+    <color name="txtbox_hint_color">#2792a4</color>
+    <color name="black">#000000</color>
+    <color name="underline">#5458DF</color>
+</resources>

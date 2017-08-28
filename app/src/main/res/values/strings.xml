@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">TRENDiPEOPLE</string>
+
+
+    <string name="trendi_people">TRENDiPEOPLE</string>
+    <string name="setting">Setting</string>
+    <string name="facebook_app_id">758705457618299</string>
+    <string name="message_network_problem">Please check your internet connectivity.</string>
+    <string name="message_problem">Opps! Something went wrong, please try again.</string>
+    <string name="problem_server">Problem connecting to server, Please try later.</string>
+    <string name="title_activity_user_dashboard">UserDashboard</string>
+    <string name="login_or_sign_up">Login or Sign Up</string>
+    <string name="text_alert">Alert</string>
+    <string name="text_home">Home</string>
+    <string name="text_wallet">Wallet</string>
+    <string name="text_profile">Profile</string>
+    <string name="text_message">Message</string>
+
+    <string name="validationErrors">Validation Errors</string>
+    <string name="addPayment">Add Payment Method</string>
+    <string name="save">Save</string>
+    <string name="saverx">Save Rx</string>
+    <string name="saveService">Save with Service</string>
+    <string name="endingIn">Card ending in </string>
+    <string name="progressMessage">Creating Token&#8230;</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="passwordLength">Password should be at least 6 digit.</string>
+    <string name="validEmail">Please enter valid email address.</string>
+    <string name="enterEmail">Please enter email address.</string>
+    <string name="enter_business">Please enter your business name.</string>
+    <string name="entergender">Please select your gender.</string>
+    <string name="enterCategory">Please select category.</string>
+    <string name="enterBusinessname">Please select business name.</string>
+    <string name="enterBusinessemail">Please select business emailId.</string>
+    <string name="enterPhone">Please enter mobile no</string>
+    <string name="mobileno_Length">Mobile no should be at least 10 digit</string>
+    <string name="enterPassword">Please enter password</string>
+    <string name="enterProfiledesc">Please enter your profile description.</string>
+    <string name="enterwebsite">Please enter your website url.</string>
+
+    <string name="enterFirstName">Please enter your Firstname</string>
+    <string name="enterLastName">Please enter your Lastname</string>
+    <string name="some_error_occurred">Unable to connect to the service, please try again later.</string>
+    <string name="timeout">Time out</string>
+    <string name="no_internet_connection">No Internet connection.  Please check your network settings.</string>
+    <string name="alert_internet_connection">Please check your internet connection.</string>
+    <string name="profile">Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="my_booking">My Booking</string>
+    <string name="switch_freelancer">Switch to Freelancer</string>
+    <string name="share_us">Share Us</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="logout">Logout</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="hint_enter_email">Enter Email</string>
+    <string name="hint_enter_password">Enter Password</string>
+    <string name="log_in">LOG IN</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="or_login_with">Or Login with</string>
+    <string name="enter_email">Please enter email</string>
+    <string name="enter_password">Please enter password</string>
+    <string name="enter_valid_emailid">Please enter valid emailid</string>
+    <string name="title_activity_select_gender">Select Gender</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="title_activity_signup">SignupActivity</string>
+    <string name="signup">Signup</string>
+    <string name="user">User</string>
+    <string name="freelancer">Freelancer</string>
+    <string name="select_category">Select Category</string>
+    <string name="password">Password</string>
+    <string name="title_activity_forgot_password">ForgotPassword</string>
+    <string name="submit">Submit</string>
+    <string name="booking">Booking</string>
+    <string name="switch_to_user">Switch to User</string>
+    <string name="my_profile">My Profile</string>
+    <string name="portfolio">Portfolio</string>
+    <string name="services">Services</string>
+    <string name="both">Both</string>
+    <string name="verify">Verify</string>
+</resources>
