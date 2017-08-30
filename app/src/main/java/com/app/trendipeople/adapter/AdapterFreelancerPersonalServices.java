@@ -36,7 +36,7 @@ public class AdapterFreelancerPersonalServices extends RecyclerView.Adapter<Adap
 
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup viewGroup, int position) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_freelancer_services, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_freelancer_myservices, viewGroup, false);
 
         final CustomViewHolder viewHolder = new CustomViewHolder(view);
         return viewHolder;
@@ -50,6 +50,17 @@ public class AdapterFreelancerPersonalServices extends RecyclerView.Adapter<Adap
         Picasso.with(mContext).load(detail.get(i).getServiceImage()).into(customViewHolder.image_service);
         customViewHolder.text_servicename.setText(detail.get(i).getServiceName());
         customViewHolder.text_servicesubcat.setText(" $ " +detail.get(i).getServicePrice());
+        customViewHolder.text_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onItemClickListener(i,11);
+            }
+        });customViewHolder.text_book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onItemClickListener(i,12);
+            }
+        });
 
     }
 
@@ -62,14 +73,16 @@ public class AdapterFreelancerPersonalServices extends RecyclerView.Adapter<Adap
 
         ImageView image_service;
         RelativeLayout rl_main;
-TextView text_servicename,text_servicesubcat,text_serviceprice;
+TextView text_servicename,text_servicesubcat,text_serviceprice,text_share,text_book;
         public CustomViewHolder(View view) {
             super(view);
             rl_main = (RelativeLayout) view.findViewById(R.id.rl_main);
               this.image_service = (ImageView) view.findViewById(R.id.image_service);
               this.text_servicename = (TextView) view.findViewById(R.id.text_servicename);
+              this.text_share = (TextView) view.findViewById(R.id.text_share);
               this.text_servicesubcat = (TextView) view.findViewById(R.id.text_servicesubcat);
               this.text_serviceprice = (TextView) view.findViewById(R.id.text_serviceprice);
+              this.text_book = (TextView) view.findViewById(R.id.text_book);
         }
 
     }

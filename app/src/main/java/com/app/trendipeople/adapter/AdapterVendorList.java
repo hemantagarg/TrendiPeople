@@ -82,6 +82,7 @@ public class AdapterVendorList extends RecyclerView.Adapter<RecyclerView.ViewHol
 
             ((CustomViewHolder) holder).text_name.setText(m1.getFreelancer_name());
             ((CustomViewHolder) holder).text_price.setText("$" + m1.getFreelancer_service_rate());
+            ((CustomViewHolder) holder).text_miles.setText(m1.getFreelancer_mile()+ " "+"Miles ");
             try {
                 if (!m1.getFreelancer_rating().equalsIgnoreCase("")) {
                     ((CustomViewHolder) holder).ratingbar.setRating(Float.parseFloat(m1.getFreelancer_rating()));
@@ -125,7 +126,7 @@ public class AdapterVendorList extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
-        TextView text_name, text_address, text_price;
+        TextView text_name, text_address, text_price,text_miles;
         ImageView image_user;
         RatingBar ratingbar;
         Button btn_order,btn_message;
@@ -135,6 +136,7 @@ public class AdapterVendorList extends RecyclerView.Adapter<RecyclerView.ViewHol
             super(view);
 
             this.text_name = (TextView) view.findViewById(R.id.text_name);
+            this.text_miles = (TextView) view.findViewById(R.id.text_miles);
             this.text_price = (TextView) view.findViewById(R.id.text_price);
             this.text_address = (TextView) view.findViewById(R.id.text_address);
             this.image_user = (ImageView) view.findViewById(R.id.image_user);

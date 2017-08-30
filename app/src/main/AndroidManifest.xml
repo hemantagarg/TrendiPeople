@@ -73,6 +73,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".activities.PrivacyPolicy"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".activities.ActivityRating"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

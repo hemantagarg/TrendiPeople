@@ -14,8 +14,8 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="About"
-            android:textColor="@color/text_blue"
+            android:text=""
+
             android:textSize="@dimen/text_size_15"
             android:textStyle="bold" />
 
@@ -24,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
+            android:layout_marginTop="5dp"
             android:textColor="@color/textcolordark"
             android:textSize="@dimen/text_size_15"
             android:textStyle="bold"
@@ -34,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
+            android:layout_marginTop="5dp"
             android:textColor="@color/textcolordark"
             android:textSize="@dimen/text_size_15" />
 
@@ -41,6 +43,7 @@
             android:id="@+id/freelanceraboutus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:textColor="@color/textcolordark"
             android:textSize="@dimen/text_size_14" />
 
@@ -48,6 +51,7 @@
             android:id="@+id/freelancerexperience"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:textColor="@color/textcolordark"
             android:textSize="@dimen/text_size_14" />
 
@@ -56,6 +60,7 @@
             android:id="@+id/freelanceraddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:textColor="@color/textcolordark"
             android:textSize="@dimen/text_size_14" />
 
@@ -63,6 +68,7 @@
             android:id="@+id/freelancerDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:textColor="@color/textcolordark"
             android:textSize="@dimen/text_size_14" />
 

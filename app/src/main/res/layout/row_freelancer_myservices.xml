@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/dp5"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@+id/image_service"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:layout_margin="@dimen/dp5"
+            android:src="@drawable/user" />
+
+        <LinearLayout
+            android:id="@+id/lineartop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_toLeftOf="@+id/rl_right"
+            android:layout_toRightOf="@+id/image_service"
+            android:orientation="vertical">
+
+
+            <com.app.trendipeople.utils.CustomTextView
+                android:id="@+id/text_servicename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mellisa Curning"
+                android:textAllCaps="true"
+                android:textColor="@color/textcolordark"
+                android:textSize="@dimen/text_size_13"
+                android:textStyle="bold" />
+
+            <com.app.trendipeople.utils.CustomTextView
+                android:id="@+id/text_servicesubcat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="London"
+
+                android:textColor="@color/textcolordark"
+                android:textSize="@dimen/text_size_12" />
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:layout_marginTop="@dimen/dp3"
+                android:orientation="horizontal">
+                <com.app.trendipeople.utils.CustomTextView
+                    android:id="@+id/text_book"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BOOK NOW"
+                    android:drawableRight="@drawable/right"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_14" />
+                <com.app.trendipeople.utils.CustomTextView
+                    android:id="@+id/text_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                   android:layout_marginLeft="@dimen/dp8"
+                    android:text="SHARE ON SOCIAL MEDIA"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+android:drawableLeft="@drawable/share"
+                    android:drawablePadding="@dimen/dp4"
+                    android:textAllCaps="true"
+                    android:textColor="@color/text_hint_color"
+                    android:textSize="@dimen/text_size_11" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rl_top"
+        android:background="@color/view_color" />
+</RelativeLayout>

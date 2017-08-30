@@ -50,6 +50,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="London"
+                android:visibility="gone"
+                android:textColor="@color/textcolordark"
+                android:textSize="@dimen/text_size_12" />
+            <com.app.trendipeople.utils.CustomTextView
+                android:id="@+id/text_miles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="London"
                 android:textColor="@color/textcolordark"
                 android:textSize="@dimen/text_size_12" />
 
@@ -81,7 +89,7 @@
             android:layout_below="@+id/lineartop"
             android:background="@color/txtbox_hint_color"
             android:textColor="@color/white"
-            android:text="Order" />
+            android:text="Book Now" />
 
         <Button android:id="@+id/btn_message"
             android:layout_width="wrap_content"

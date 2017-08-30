@@ -4,15 +4,22 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -53,6 +60,10 @@ public class SignupActivity extends AppCompatActivity implements ApiResponse {
     private Button btnSignup;
     private EditText edtAddress;
     String latitude = "0.0", longitude = "0.0";
+    CheckBox checkbox_terms;
+
+    TextView text_terms;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +72,7 @@ public class SignupActivity extends AppCompatActivity implements ApiResponse {
         mActivity = SignupActivity.this;
         initViews();
         setListener();
+        clickableText();
         GPSTracker gps = new GPSTracker(mActivity);
         if (gps.canGetLocation()) {
             latitude = "" + gps.getLatitude();
@@ -135,6 +147,7 @@ public class SignupActivity extends AppCompatActivity implements ApiResponse {
         text_freelancer = (TextView) findViewById(R.id.text_freelancer);
         text_user = (TextView) findViewById(R.id.text_user);
         text_select_category = (TextView) findViewById(R.id.text_select_category);
+        text_terms = (TextView) findViewById(R.id.text_terms);
 
         edtFirstname = (EditText) findViewById(R.id.edtFirstname);
         edtAddress = (EditText) findViewById(R.id.edtAddress);
@@ -145,7 +158,7 @@ public class SignupActivity extends AppCompatActivity implements ApiResponse {
         radioGender = (RadioGroup) findViewById(R.id.radioGender);
         rl_category = (RelativeLayout) findViewById(R.id.rl_category);
         btnSignup = (Button) findViewById(R.id.btnSignup);
-
+        checkbox_terms = (CheckBox) findViewById(R.id.checkbox_terms);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -207,12 +220,22 @@ public class SignupActivity extends AppCompatActivity implements ApiResponse {
                 if (isValidLoginDetails()) {
                     if (isFreelancer) {
                         if (!text_select_category.getText().toString().equalsIgnoreCase("")) {
-                            signupUser();
+                            if (checkbox_terms.isChecked()) {
+                                signupUser();
+                            } else {
+                                Toast.makeText(mActivity, "Please agree to our terms & conditions", Toast.LENGTH_SHORT).show();
+                            }
+
                         } else {
                             Toast.makeText(getApplicationContext(), R.string.enterCategory, Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        signupUser();
+                        if (checkbox_terms.isChecked()) {
+                            signupUser();
+                        } else {
+                            Toast.makeText(mActivity, "Please agree to our terms & conditions", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
 
                 }
@@ -237,7 +260,46 @@ public class SignupActivity extends AppCompatActivity implements ApiResponse {
             text_select_category.setText(selectedserviceName);
         }
     }
+    private void clickableText() {
+        SpannableString ss = new SpannableString("I agree with terms and condition and privacy policy");
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+                // startActivity(new Intent(SignUp.this, Login.class));
 
+                Intent in = new Intent(SignupActivity.this, PrivacyPolicy.class);
+                in.putExtra("title", "Terms and Conditions");
+                startActivity(in);
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(true);
+            }
+        };
+        ClickableSpan clickableSpan1 = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+                Intent in = new Intent(SignupActivity.this, PrivacyPolicy.class);
+                in.putExtra("title", "Privacy Policy");
+                startActivity(in);
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(true);
+            }
+        };
+
+        ss.setSpan(clickableSpan, 13, 32, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(clickableSpan1, 37, 51, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        text_terms.setText(ss);
+        text_terms.setMovementMethod(LinkMovementMethod.getInstance());
+        text_terms.setHighlightColor(Color.TRANSPARENT);
+
+    }
     private void signupUser() {
 
         //  http://onlineworkpro.com/trendi/api/register.php?name=aa&mobile=7895689562&password=123456&user_type=1

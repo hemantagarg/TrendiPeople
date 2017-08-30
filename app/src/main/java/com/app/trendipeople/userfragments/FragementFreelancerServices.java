@@ -1,6 +1,7 @@
 package com.app.trendipeople.userfragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.trendipeople.R;
+import com.app.trendipeople.activities.LoginActivity;
 import com.app.trendipeople.adapter.AdapterFreelancerPersonalServices;
 
 import com.app.trendipeople.interfaces.OnCustomItemClicListener;
 import com.app.trendipeople.models.ModelCategory;
+import com.app.trendipeople.utils.AppConstant;
+import com.app.trendipeople.utils.AppUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,6 +85,35 @@ public class FragementFreelancerServices extends Fragment implements OnCustomIte
 
     @Override
     public void onItemClickListener(int position, int flag) {
+      if (flag == 11) {
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+//            ModelData modelData = listServices.get(position);
+//            String text = "Service Request : " + "\nUsername : " + modelData.getFull_name() + "\nEmail : " + modelData.getEmail()
+//                    + "\nMobile no : " + modelData.getMobile() + "\nAddress : " + modelData.getAddress() + "\nProduct Name : " + modelData.getProduct()
+//                    + "\nCompany name : " + modelData.getCompany_name() + "\nPurchase Date : " + modelData.getPurchase_date()
+//                    + "\nComment : " + modelData.getComment()
+//                    + "\nCurrent Location : " + modelData.getAutolocation();
 
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Test");
+            startActivity(Intent.createChooser(sharingIntent, "Share using"));
+        }
+       /* if (flag == 1) {
+            VendorProfileFragment subCategoryFragment = new VendorProfileFragment();
+            Bundle b = new Bundle();
+            b.putString(AppConstant.VENDORID, arrayList.get(position).getFreelancer_id());
+
+            subCategoryFragment.setArguments(b);
+            setFragment(subCategoryFragment);
+        } else if (flag == 2) {
+
+            if (AppUtils.getUserId(mActivity).equalsIgnoreCase("")) {
+                Intent intent = new Intent(mActivity, LoginActivity.class);
+                startActivity(intent);
+            } else {
+                showOrderConfirmation(arrayList.get(position).getFreelancer_id());
+
+            }
+        }*/
     }
 }

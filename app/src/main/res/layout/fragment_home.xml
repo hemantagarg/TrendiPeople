@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/image_search"
                 android:background="@android:color/transparent"
-                android:hint="Search Trendipeople services"
+                android:hint="Search TRENDiPEOPLE Services"
                 android:padding="@dimen/dp5"
                 android:text=""
                 android:textColor="@color/textcolordark"

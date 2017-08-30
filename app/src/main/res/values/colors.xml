@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#06a5cc</color>
+    <color name="colorPrimary">#2dd0c6</color>
     <color name="colorPrimaryDark">#068eaf</color>
     <color name="colorAccent">#06a5cc</color>
     <color name="dashboard_layoutbg_color">#99272727</color>

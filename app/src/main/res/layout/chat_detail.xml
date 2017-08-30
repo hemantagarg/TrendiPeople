@@ -68,7 +68,7 @@
                 android:layout_marginLeft="@dimen/dp7"
                 android:layout_toLeftOf="@+id/send_message"
                 android:background="@android:color/transparent"
-                android:hint="Type somehing to send"
+                android:hint="Type message"
                 android:padding="@dimen/dp10"
                 android:textColor="@color/textcolordark"
                 android:textColorHint="@color/txtbox_hint_color" />

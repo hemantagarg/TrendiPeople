@@ -55,11 +55,11 @@ public class FragementAboutUs extends Fragment {
                 serviceDetail.setFreelancer_name(jo.getString("Name"));
 
                 String s = jo.getString("Name");
-                freelanceraboutus.setText("About : "+jo.getString("About"));
-                name.setText(s);
+                freelanceraboutus.setText("About Me : "+jo.getString("About"));
+               // name.setText(s);
                 email.setText("EmailId : " + jo.getString("Email"));
-                freelanceraddress.setText("Address : " + jo.getString("Address"));
-                freelancerDesc.setText("Description : " + jo.getString("Description"));
+                freelanceraddress.setText("Qualifictions : " + jo.getString("Qaulication"));
+                freelancerDesc.setText("Languages : " + jo.getString("Language"));
                 freelancerexperience.setText("Experience " + " : " + jo.getString("Experience") + "Year");
 
             } catch (JSONException e) {
