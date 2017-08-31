@@ -1,58 +1,30 @@
 [
     {
-        "merged": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\camera_crop_width.png",
-        "source": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\camera_crop_width.png"
+        "merged": "E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\camera_crop_width.png",
+        "source": "E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\camera_crop_width.png"
     },
     {
-        "merged": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/simple-crop-image-lib/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/ic_rotate_left.png",
-        "source": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/simple-crop-image-lib/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/ic_rotate_left.png"
+        "merged": "E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\camera_crop_height.png",
+        "source": "E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\camera_crop_height.png"
     },
     {
-        "merged": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\camera_crop_height.png",
-        "source": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\camera_crop_height.png"
+        "merged": "E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ic_rotate_right.png",
+        "source": "E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ic_rotate_right.png"
     },
     {
-        "merged": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/simple-crop-image-lib/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/btn_crop_operator.9.png",
-        "source": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/simple-crop-image-lib/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/btn_crop_operator.9.png"
+        "merged": "E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\btn_crop_pressed.9.png",
+        "source": "E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\btn_crop_pressed.9.png"
     },
     {
-        "merged": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ic_rotate_right.png",
-        "source": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ic_rotate_right.png"
+        "merged": "E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\indicator_autocrop.png",
+        "source": "E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\indicator_autocrop.png"
     },
     {
-        "merged": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/simple-crop-image-lib/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/camera_crop_height.png",
-        "source": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/simple-crop-image-lib/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/camera_crop_height.png"
+        "merged": "E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\btn_crop_operator.9.png",
+        "source": "E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\btn_crop_operator.9.png"
     },
     {
-        "merged": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\btn_crop_pressed.9.png",
-        "source": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\btn_crop_pressed.9.png"
-    },
-    {
-        "merged": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/simple-crop-image-lib/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/camera_crop_width.png",
-        "source": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/simple-crop-image-lib/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/camera_crop_width.png"
-    },
-    {
-        "merged": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/simple-crop-image-lib/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/indicator_autocrop.png",
-        "source": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/simple-crop-image-lib/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/indicator_autocrop.png"
-    },
-    {
-        "merged": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\indicator_autocrop.png",
-        "source": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\indicator_autocrop.png"
-    },
-    {
-        "merged": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/simple-crop-image-lib/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/ic_rotate_right.png",
-        "source": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/simple-crop-image-lib/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/ic_rotate_right.png"
-    },
-    {
-        "merged": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\btn_crop_operator.9.png",
-        "source": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\btn_crop_operator.9.png"
-    },
-    {
-        "merged": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ic_rotate_left.png",
-        "source": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ic_rotate_left.png"
-    },
-    {
-        "merged": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/simple-crop-image-lib/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/btn_crop_pressed.9.png",
-        "source": "/Users/stackmindz/Documents/KkWorkspace/Trendi/TrendiPeople/simple-crop-image-lib/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/btn_crop_pressed.9.png"
+        "merged": "E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\ic_rotate_left.png",
+        "source": "E:\\workspace_new\\WorkspaceTrendyPeople\\TrendyPeople\\simple-crop-image-lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\ic_rotate_left.png"
     }
 ]
