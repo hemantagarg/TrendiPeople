@@ -156,7 +156,7 @@ public class VendorProfileFragment extends BaseFragment implements View.OnClickL
 
         FragmentGallery tab3 = new FragmentGallery();
         Bundle b2 = new Bundle();
-        b2.putString("portfolio", arrayList.get(0).getPortfolioDetailsArray());
+        b2.putString("gallery", arrayList.get(0).getPortfolioDetailsArray());
         tab3.setArguments(b2);
         adapter.addFrag(tab3, "Portfolio");
 

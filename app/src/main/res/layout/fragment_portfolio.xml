@@ -25,5 +25,10 @@
             android:layout_alignParentRight="true"
             android:layout_margin="@dimen/fab_margin"
             android:src="@drawable/add_white" />
+
+        <include  android:id="@+id/addImageView"
+            android:visibility="gone"
+            layout="@layout/service_portfolio_layout"/>
+
     </RelativeLayout>
 </LinearLayout>

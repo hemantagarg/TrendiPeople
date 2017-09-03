@@ -11,19 +11,31 @@
         android:layout_margin="@dimen/dp2"
         android:background="@color/white">
 
-
         <ImageView
             android:id="@+id/image_view"
             android:layout_width="match_parent"
             android:layout_height="140dp"
             android:scaleType="fitXY" />
 
-        <ImageView android:id="@+id/img_delete"
+        <ImageView
+            android:id="@+id/img_delete"
             android:layout_width="@dimen/dp25"
             android:layout_height="@dimen/dp25"
             android:layout_alignParentRight="true"
             android:layout_margin="@dimen/dp5"
-            android:src="@drawable/cross"/>
+            android:src="@drawable/cross" />
+
+        <TextView android:id="@+id/text_hashtag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/image_view"
+            android:background="@color/view_color"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:singleLine="true"
+            android:text="Hair"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_15" />
 
     </RelativeLayout>
 

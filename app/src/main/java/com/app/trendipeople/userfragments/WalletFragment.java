@@ -40,7 +40,6 @@ import java.util.ArrayList;
 
 public class WalletFragment extends BaseFragment implements ApiResponse, OnCustomItemClicListener {
 
-
     public static WalletFragment walletFragment;
     private Activity mActivity;
     private View view;
@@ -52,9 +51,8 @@ public class WalletFragment extends BaseFragment implements ApiResponse, OnCusto
     private ImageView image_user;
     private RelativeLayout rl_send_money;
     private TextView text_wallet_balance;
-    private final String TAG = WalletFragment.class.getSimpleName();
     private String Categoryid = "", categoryImage = "";
-
+    private final String TAG = WalletFragment.class.getSimpleName();
     public static WalletFragment getInstance() {
         if (walletFragment == null)
             walletFragment = new WalletFragment();

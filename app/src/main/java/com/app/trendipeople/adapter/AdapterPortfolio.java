@@ -11,8 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.trendipeople.R;
-import com.app.trendipeople.interfaces.OnCustomItemClicListener;
-import com.app.trendipeople.models.ModelCategory;
+import com.app.trendipeople.models.Images;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -20,17 +19,15 @@ import java.util.ArrayList;
 /**
  * Created by Hemanta on 21-04-2017.
  */
-public class AdapterVendorPortfolio extends RecyclerView.Adapter<AdapterVendorPortfolio.CustomViewHolder> {
+public class AdapterPortfolio extends RecyclerView.Adapter<AdapterPortfolio.CustomViewHolder> {
 
-    ArrayList<ModelCategory> detail;
+    ArrayList<Images> detail;
     Context mContext;
-    OnCustomItemClicListener listener;
 
-    public AdapterVendorPortfolio(Context context, OnCustomItemClicListener lis, ArrayList<ModelCategory> list) {
+    public AdapterPortfolio(Context context, ArrayList<Images> list) {
 
         this.detail = list;
         this.mContext = context;
-        this.listener = lis;
     }
 
 
@@ -46,20 +43,15 @@ public class AdapterVendorPortfolio extends RecyclerView.Adapter<AdapterVendorPo
     @Override
     public void onBindViewHolder(CustomViewHolder customViewHolder, final int i) {
 
-        Log.e("portfolioimage", "*" + detail.get(i).getPorfolioImage());
-        Picasso.with(mContext).load(detail.get(i).getPorfolioImage()).into(customViewHolder.image_view);
+        Log.e("portfolioimage", "*" + detail.get(i).getImage());
+        Picasso.with(mContext).load(detail.get(i).getImage()).into(customViewHolder.image_view);
+        customViewHolder.img_delete.setVisibility(View.GONE);
         if (detail.get(i).getComment() != null) {
             customViewHolder.text_hashtag.setText(detail.get(i).getComment());
             customViewHolder.text_hashtag.setVisibility(View.VISIBLE);
         } else {
             customViewHolder.text_hashtag.setVisibility(View.GONE);
         }
-        customViewHolder.img_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onItemClickListener(i, 1);
-            }
-        });
     }
 
     @Override

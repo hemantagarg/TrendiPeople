@@ -276,7 +276,7 @@ public class FragmentVenderDateTime extends BaseFragment implements ApiResponse,
     private void manageHeaderView() {
         HeaderViewManager.getInstance().InitializeHeaderView(null, view, manageHeaderClick());
         HeaderViewManager.getInstance().setHeading(true, "Save Date Time");
-        HeaderViewManager.getInstance().setLeftSideHeaderView(false, R.drawable.left_arrow);
+        HeaderViewManager.getInstance().setLeftSideHeaderView(true, R.drawable.left_arrow);
         HeaderViewManager.getInstance().setRightSideHeaderView(false, R.drawable.search);
     }
 

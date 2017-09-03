@@ -19,6 +19,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.trendipeople.R;
@@ -51,7 +58,6 @@ import eu.janmuller.android.simplecropimage.CropImage;
 
 public class FragmentVendorPortfolio extends BaseFragment implements OnCustomItemClicListener, ApiResponse {
 
-
     private RecyclerView recycler_portfolio;
     private Activity mActivity;
     private FloatingActionButton fab_add;
@@ -71,6 +77,17 @@ public class FragmentVendorPortfolio extends BaseFragment implements OnCustomIte
     private ArrayList<ModelCategory> imagelist;
     private View view;
     private int deletePosition;
+    private Spinner spinner_services;
+    private View addImageView;
+    private TextView text_add_image;
+    private EditText edt_comment;
+    private Button btn_submit;
+    private String selectedServiceId = "";
+    private ImageView image_cross;
+    ArrayAdapter<String> adapterService;
+    private ArrayList<String> serviceId = new ArrayList<>();
+    private ArrayList<String> serviceName = new ArrayList<>();
+
 
     public static FragmentVendorPortfolio getInstance() {
         if (fragmentVendorPortfolio == null)
@@ -105,15 +122,22 @@ public class FragmentVendorPortfolio extends BaseFragment implements OnCustomIte
         b = getArguments();
         arrayList = new ArrayList<>();
         imagelist = new ArrayList<>();
+
+        spinner_services = (Spinner) view.findViewById(R.id.spinner_services);
+        text_add_image = (TextView) view.findViewById(R.id.text_add_image);
+        edt_comment = (EditText) view.findViewById(R.id.edt_comment);
+        btn_submit = (Button) view.findViewById(R.id.btn_submit);
+        addImageView = view.findViewById(R.id.addImageView);
         recycler_portfolio = (RecyclerView) view.findViewById(R.id.recycler_portfolio);
         recycler_portfolio.setLayoutManager(new GridLayoutManager(mActivity, 2));
         fab_add = (FloatingActionButton) view.findViewById(R.id.fab_add);
-
+        image_cross = (ImageView) view.findViewById(R.id.image_cross);
         adapterVendorPortfolio = new AdapterVendorPortfolio(mActivity, this, imagelist);
         recycler_portfolio.setAdapter(adapterVendorPortfolio);
 
         setListener();
         getPortfolio();
+        getServiceList();
     }
 
     private void getPortfolio() {
@@ -123,6 +147,18 @@ public class FragmentVendorPortfolio extends BaseFragment implements OnCustomIte
             //http://dev.stackmindz.com/trendi/api/getGalleryList.php?user_id=200
             String url = JsonApiHelper.BASEURL + JsonApiHelper.GET_GALLERY + "user_id=" + AppUtils.getUserId(mActivity);
             new CommonAsyncTaskHashmap(2, mActivity, this).getquery(url);
+
+        } else {
+            Toast.makeText(mActivity, mActivity.getResources().getString(R.string.message_network_problem), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void getServiceList() {
+        // http://dev.stackmindz.com/trendi/api/userservice.php?user_id=200
+        if (AppUtils.isNetworkAvailable(mActivity)) {
+
+            String url = JsonApiHelper.BASEURL + JsonApiHelper.USER_SRVICE + "user_id=" + AppUtils.getUserId(mActivity);
+            new CommonAsyncTaskHashmap(11, mActivity, this).getqueryNoProgress(url);
 
         } else {
             Toast.makeText(mActivity, mActivity.getResources().getString(R.string.message_network_problem), Toast.LENGTH_SHORT).show();
@@ -152,7 +188,12 @@ public class FragmentVendorPortfolio extends BaseFragment implements OnCustomIte
             @Override
             public void onClickOfHeaderLeftView() {
                 AppUtils.showLog(TAG, "onClickOfHeaderLeftView");
-                mActivity.onBackPressed();
+                if (addImageView.getVisibility() == View.VISIBLE) {
+                    addImageView.setVisibility(View.GONE);
+                    return;
+                } else {
+                    mActivity.onBackPressed();
+                }
             }
 
             @Override
@@ -162,13 +203,55 @@ public class FragmentVendorPortfolio extends BaseFragment implements OnCustomIte
         };
     }
 
-
     private void setListener() {
         fab_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                addImageView.setVisibility(View.VISIBLE);
+            }
+        });
 
+        image_cross.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addImageView.setVisibility(View.GONE);
+            }
+        });
+
+        text_add_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 selectImage1();
+            }
+        });
+        btn_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedFilePath != null && !selectedServiceId.equalsIgnoreCase("")
+                        && !edt_comment.getText().toString().equalsIgnoreCase("")) {
+                    uploadPhoto();
+                } else {
+                    if (selectedServiceId.equalsIgnoreCase("")) {
+                        Toast.makeText(mActivity, "Please select Service", Toast.LENGTH_SHORT).show();
+                    } else if (selectedFilePath == null) {
+                        Toast.makeText(mActivity, "Please select Image", Toast.LENGTH_SHORT).show();
+                    } else if (edt_comment.getText().toString().equalsIgnoreCase("")) {
+                        Toast.makeText(mActivity, "Please enter Hashtag", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
+        spinner_services.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                selectedServiceId = serviceId.get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
@@ -295,7 +378,8 @@ public class FragmentVendorPortfolio extends BaseFragment implements OnCustomIte
                 bitmap = BitmapFactory.decodeFile(mFileTemp.getPath());
                 selectedFilePath = new File(path);
                 Log.e("filepath", "**" + selectedFilePath);
-                uploadPhoto();
+                text_add_image.setText("Image Selected Successfully");
+                //    uploadPhoto();
                 //     profile_image.setImageBitmap(bitmap);
                 break;
 
@@ -308,8 +392,9 @@ public class FragmentVendorPortfolio extends BaseFragment implements OnCustomIte
         if (AppUtils.isNetworkAvailable(mActivity)) {
 
             HashMap<String, Object> hm = new HashMap<>();
-
             hm.put("gallery_image", selectedFilePath);
+            hm.put("service_id", selectedServiceId);
+            hm.put("comment", edt_comment.getText().toString());
             hm.put("user_id", AppUtils.getUserId(mActivity));
 
             // http://dev.stackmindz.com/trendi/api/addGallery.php?user_id=200&gallery_image=
@@ -361,10 +446,30 @@ public class FragmentVendorPortfolio extends BaseFragment implements OnCustomIte
                     ModelCategory serviceDetail = new ModelCategory();
                     serviceDetail.setPorfolioImage(data.getString("galleryurl"));
                     serviceDetail.setImageId(data.getString("id"));
+                    serviceDetail.setComment(edt_comment.getText().toString());
 
                     imagelist.add(serviceDetail);
-
                     adapterVendorPortfolio.notifyDataSetChanged();
+                    addImageView.setVisibility(View.GONE);
+
+                    edt_comment.setText("");
+                    text_add_image.setText("Add Image");
+                }
+            } else if (method == 11) {
+                JSONObject commandResult = jObject.getJSONObject("commandResult");
+                if (commandResult.getString("success").equalsIgnoreCase("1")) {
+                    arrayList = new ArrayList<>();
+
+                    JSONObject data = commandResult.getJSONObject("data");
+                    JSONArray services = data.getJSONArray("Services");
+                    for (int i = 0; i < services.length(); i++) {
+
+                        JSONObject jo = services.getJSONObject(i);
+                        serviceId.add(jo.getString("ServiceId"));
+                        serviceName.add(jo.getString("ServiceName"));
+                    }
+                    adapterService = new ArrayAdapter<String>(mActivity, R.layout.row_spinner, R.id.text_view, serviceName);
+                    spinner_services.setAdapter(adapterService);
                 }
             } else if (method == 2) {
                 JSONObject commandResult = jObject
@@ -380,6 +485,8 @@ public class FragmentVendorPortfolio extends BaseFragment implements OnCustomIte
                         ModelCategory serviceDetail = new ModelCategory();
                         serviceDetail.setPorfolioImage(jo.getString("galleryurl"));
                         serviceDetail.setImageId(jo.getString("id"));
+                        serviceDetail.setComment(jo.getString("comment"));
+
                         imagelist.add(serviceDetail);
                     }
                     adapterVendorPortfolio.notifyDataSetChanged();

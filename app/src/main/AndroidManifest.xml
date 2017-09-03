@@ -91,6 +91,7 @@
         <activity
             android:name=".activities.VendorDashboard"
             android:label="@string/title_activity_signup"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -113,7 +114,7 @@
             android:label="@string/title_activity_forgot_password"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.StripDemo"></activity>
+        <activity android:name=".activities.StripDemo"/>
     </application>
 
 </manifest>

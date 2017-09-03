@@ -1,5 +1,7 @@
 package com.app.trendipeople.models;
 
+import java.util.ArrayList;
+
 /**
  * Created by hemanta on 29-07-2017.
  */
@@ -15,19 +17,37 @@ public class ModelCategory {
     private String SubCategoryName;
     private String SubCategoryImage;
     private String ServiceId;
-    private String ServiceName;
+    private String ServiceName, comment;
     private String ServiceImage, OrderId;
+
+    public ArrayList<Images> getImagesArrayList() {
+        return imagesArrayList;
+    }
+
+    public void setImagesArrayList(ArrayList<Images> imagesArrayList) {
+        this.imagesArrayList = imagesArrayList;
+    }
+
+    private ArrayList<Images> imagesArrayList;
     private int rowType = 0;
     private String freelancer_mile;
     private String freelancer_id, date, message;
     private String freelancer_name, GenderType, freelancer_image, freelancer_service_rate, freelancer_rating;
-    private String porfolioImage,ConverId;
+    private String porfolioImage, ConverId;
     private String imageId;
     private String servies, UserImage;
     private String bussinessDetailsArray;
     private String portfolioDetailsArray, review;
     private String about, VendorName, VendorMobile, VendorEmail, VendorImage, ratingArray;
     private boolean selected;
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public String getVendorName() {
         return VendorName;
