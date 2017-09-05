@@ -244,7 +244,7 @@ public class HomeFragment extends BaseFragment implements ApiResponse, OnCustomI
         HeaderViewManager.getInstance().InitializeHeaderView(null, view, manageHeaderClick());
         HeaderViewManager.getInstance().setHeading(true, mActivity.getResources().getString(R.string.trendi_people));
         HeaderViewManager.getInstance().setLeftSideHeaderView(false, R.drawable.left_arrow);
-        HeaderViewManager.getInstance().setRightSideHeaderView(false, R.drawable.search);
+        HeaderViewManager.getInstance().setRightSideHeaderView(true, R.drawable.search);
 
     }
 
@@ -262,7 +262,8 @@ public class HomeFragment extends BaseFragment implements ApiResponse, OnCustomI
 
             @Override
             public void onClickOfHeaderRightView() {
-                Toast.makeText(mActivity, "Coming Soon", Toast.LENGTH_SHORT).show();
+                setFragment(new SearchFragment());
+             //   Toast.makeText(mActivity, "Coming Soon", Toast.LENGTH_SHORT).show();
             }
         };
     }

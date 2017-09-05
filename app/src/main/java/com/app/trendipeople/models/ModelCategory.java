@@ -38,7 +38,7 @@ public class ModelCategory {
     private String servies, UserImage;
     private String bussinessDetailsArray;
     private String portfolioDetailsArray, review;
-    private String about, VendorName, VendorMobile, VendorEmail, VendorImage, ratingArray;
+    private String about, VendorName, VendorMobile, VendorEmail, VendorImage, ratingArray,Vendor_Id;
     private boolean selected;
 
     public String getComment() {
@@ -377,5 +377,13 @@ public class ModelCategory {
 
     public void setConverId(String converId) {
         ConverId = converId;
+    }
+
+    public String getVendor_Id() {
+        return Vendor_Id;
+    }
+
+    public void setVendor_Id(String vendor_Id) {
+        Vendor_Id = vendor_Id;
     }
 }

@@ -5,8 +5,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,14 +17,32 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.trendipeople.R;
+import com.app.trendipeople.aynctask.CommonAsyncTask;
 import com.app.trendipeople.aynctask.CommonAsyncTaskHashmap;
 import com.app.trendipeople.interfaces.ApiResponse;
 import com.app.trendipeople.interfaces.JsonApiHelper;
 import com.app.trendipeople.utils.AppConstant;
 import com.app.trendipeople.utils.AppUtils;
 import com.app.trendipeople.utils.GPSTracker;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.json.JSONObject;
+
+import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity implements ApiResponse {
 
@@ -32,12 +52,36 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
     private TextView createAccount, forgotPassword;
     private ImageView image_facebook, image_instagram, image_gmail;
     String latitude = "0.0", longitude = "0.0";
+    int PERMISSION_ALL = 1;
+    String[] PERMISSIONS = {android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION,
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA,};
+    private static final int RC_SIGN_IN = 9001;
+    private GoogleApiClient mGoogleApiClient;
+    String sName = "", sEmail = "", sId = "", sSocialType = "";
+    private CallbackManager callbackManager;
+    private String TAG = LoginActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         mActivity = LoginActivity.this;
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                // .enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+        registerFacebookCallback();
+
         initViews();
         setListener();
         GPSTracker gps = new GPSTracker(mActivity);
@@ -91,6 +135,22 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
     }
 
     private void setListener() {
+        image_facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                onFacebookLoginClick();
+
+            }
+        });
+        image_gmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+        });
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,6 +193,69 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (callbackManager != null) {
+            callbackManager.onActivityResult(requestCode, resultCode, data);
+            Bundle b = data.getExtras();
+            Log.e("Data", "&&&&&&&&&" + b.getString("name"));
+        }
+
+        if (requestCode == RC_SIGN_IN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            Log.e("googleresult", "**" + result.isSuccess());
+            handleSignInResult(result);
+        }
+
+    }
+
+    private void handleSignInResult(GoogleSignInResult result) {
+        Log.d(TAG, "handleSignInResult:" + result.isSuccess());
+        if (result.isSuccess()) {
+            // Signed in successfully, show authenticated UI.
+
+            GoogleSignInAccount acct = result.getSignInAccount();
+            Toast.makeText(mActivity, acct.getDisplayName(), Toast.LENGTH_SHORT).show();
+            Log.e("nameFromgoogle", acct.getDisplayName());
+            Log.e("emailFromgoogle", acct.getEmail());
+            Log.e("IDFromgoogle", acct.getId());
+
+            try {
+                sName = acct.getDisplayName();
+                sEmail = acct.getEmail();
+                sSocialType = "1";
+                sId = acct.getId();
+
+                social_login("3", sName, sEmail, "", sId);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } else {
+        }
+    }
+    // http://packmygift.com/api/login.php?login_type=2&email=aa@gmail.com&gcm=dsfsd
+    // &device_type=aa&social_id=1235&first_name=dsfdsa&last_name=jkjk&mobile=4565&address=dfd
+
+    private void social_login(String socialtype, String name, String email, String number, String social_id) {
+
+        if (AppUtils.isNetworkAvailable(mActivity)) {
+
+         String   url = JsonApiHelper.BASEURL + JsonApiHelper.LOGIN
+                 + "email=" + email + "&first_name=" + name + "&mobile=" + number
+                    + "&password=" + edtPassword.getText().toString() + "&login_type=" + socialtype + "&social_id=" + social_id
+                    + "&gcm=" + AppUtils.getGcmRegistrationKey(mActivity) + "&device_type=" + AppConstant.DEVICE_TYPE;
+
+            new CommonAsyncTask(1, mActivity, LoginActivity.this).getquery(url);
+
+        } else {
+            Toast.makeText(mActivity, getResources().getString(R.string.message_network_problem), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
     private void loginUser() {
 
@@ -146,6 +269,69 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
         } else {
             Toast.makeText(mActivity, mActivity.getResources().getString(R.string.message_network_problem), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void onFacebookLoginClick() {
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"));
+    }
+
+    private void registerFacebookCallback() {
+        callbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        // App code
+                        //  Toast.makeText(SignInActivity.this, "accesstoken****" + loginResult.getAccessToken(), Toast.LENGTH_SHORT).show();
+                        getProfileFromFacebook(loginResult.getAccessToken());
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        // App code
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                    }
+                });
+
+    }
+
+    private void getProfileFromFacebook(AccessToken accessToken) {
+        GraphRequest request = GraphRequest.newMeRequest(
+                accessToken,
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        Log.e("fb data  ", "fb data  " + object.toString());
+                        try {
+                            //  Toast.makeText(context, "F Login" + object.toString(), Toast.LENGTH_LONG).show();
+                            String email = "", number = "";
+                            if (object.has("email")) {
+                                email = object.getString("email");
+                            } else {
+                                email = "";
+                            }
+                            if (object.has("mobile_phone")) {
+                                number = object.getString("mobile_phone");
+                            } else {
+                                number = "";
+                            }
+                            social_login("2", object.getString("name"), email, number, object.getString("id"));
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        //finish();
+                    }
+                });
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id,name,email,first_name,last_name,gender,birthday");
+        request.setParameters(parameters);
+        request.executeAsync();
     }
 
 

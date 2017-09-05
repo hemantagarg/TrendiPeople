@@ -22,6 +22,7 @@ public interface JsonApiHelper {
     String SAVE_SERVICE_PRICE = "save-service-price.php?";
     String GET_PROFILE = "getProfile.php?";
     String SERVICE = "service.php?";
+    String SEARCH_SERVICE = "searchService.php?";
     String LOGIN = "login.php?";
     String ORDER = "order.php?";
     String GET_GALLERY = "getGalleryList.php?";
