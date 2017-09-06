@@ -122,10 +122,11 @@ public class VendorListFragment extends BaseFragment implements ApiResponse, OnC
 
 
     private void init() {
-        calendarView = (MaterialCalendarView) view.findViewById(R.id.calendarView);
-        calendarView.setOnDateChangedListener(this);
+
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark, R.color.colorPrimary);
+        calendarView = (MaterialCalendarView) view.findViewById(R.id.calendarView);
+        calendarView.setOnDateChangedListener(this);
         Calendar calendar = Calendar.getInstance();
         calendarView.setSelectedDate(calendar);
         calendarView.setShowOtherDates(MaterialCalendarView.SHOW_OUT_OF_RANGE);

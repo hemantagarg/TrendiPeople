@@ -119,7 +119,6 @@
                 android:layout_marginLeft="@dimen/dp10"
                 android:layout_marginRight="@dimen/dp10" />
 
-
         </android.support.v4.widget.SwipeRefreshLayout>
 
     </LinearLayout>

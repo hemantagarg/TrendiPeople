@@ -52,5 +52,10 @@
 
     </LinearLayout>
 
+    <include
+        android:id="@+id/date_view"
+        layout="@layout/customdate"
+        android:visibility="visible" />
+
 
 </RelativeLayout>
