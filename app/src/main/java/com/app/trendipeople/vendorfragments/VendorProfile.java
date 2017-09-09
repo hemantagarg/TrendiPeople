@@ -64,13 +64,13 @@ import eu.janmuller.android.simplecropimage.CropImage;
 import static com.app.trendipeople.R.id.edtName;
 
 
-public class VendorProfileFragment extends BaseFragment implements ApiResponse {
+public class VendorProfile extends BaseFragment implements ApiResponse {
 
 
-    public static VendorProfileFragment userProfileFragment;
+    public static VendorProfile userProfileFragment;
     private Activity mActivity;
     private View view;
-    private final String TAG = VendorProfileFragment.class.getSimpleName();
+    private final String TAG = VendorProfile.class.getSimpleName();
     private EditText user_name, edtmobilenumber, edtEmailId, edtWebsite, edtProfileDescription,
             edtbusinessname, edtAddress, edtbusinessEmail, edtbusinessAddress, edtAbout,
             edtbusinessExp, edtbusinessDesc, edtlanguage, edtQualification;
@@ -98,9 +98,9 @@ public class VendorProfileFragment extends BaseFragment implements ApiResponse {
     RadioButton radio_male, radio_female;
 
 
-    public static VendorProfileFragment getInstance() {
+    public static VendorProfile getInstance() {
         if (userProfileFragment == null)
-            userProfileFragment = new VendorProfileFragment();
+            userProfileFragment = new VendorProfile();
         return userProfileFragment;
     }
 
@@ -518,7 +518,7 @@ public class VendorProfileFragment extends BaseFragment implements ApiResponse {
     public void onResume() {
         super.onResume();
 
-        if (UserDashboard.currentFragment instanceof VendorProfileFragment) {
+        if (UserDashboard.currentFragment instanceof VendorProfile) {
 
         }
     }

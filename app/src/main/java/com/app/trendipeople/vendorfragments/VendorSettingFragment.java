@@ -183,7 +183,7 @@ public class VendorSettingFragment extends BaseFragment implements View.OnClickL
                 break;
             case R.id.rl_profile:
 
-                VendorProfileFragment userProfileFragment = new VendorProfileFragment();
+                VendorProfile userProfileFragment = new VendorProfile();
                 setFragment(userProfileFragment);
                 break;
 

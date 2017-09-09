@@ -99,7 +99,7 @@ public class FragementFreelancerServices extends Fragment implements OnCustomIte
             startActivity(Intent.createChooser(sharingIntent, "Share using"));
         }
        /* if (flag == 1) {
-            VendorProfileFragment subCategoryFragment = new VendorProfileFragment();
+            VendorProfile subCategoryFragment = new VendorProfile();
             Bundle b = new Bundle();
             b.putString(AppConstant.VENDORID, arrayList.get(position).getFreelancer_id());
 
