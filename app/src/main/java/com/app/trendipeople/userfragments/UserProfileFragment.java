@@ -682,7 +682,13 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
                         freelancerCheckbox.setChecked(false);
                     }
 
+
                     JSONObject business_profile = data.getJSONObject("Business_profile");
+
+                    if (business_profile.has("Id")) {
+                        AppUtils.setBusinessId(mActivity, business_profile.getString("Id"));
+                    }
+
                     if (business_profile.has("Name")) {
                         if (!business_profile.getString("Banner").equalsIgnoreCase("")) {
                             Picasso.with(mActivity).load(business_profile.getString("Banner")).into(image_user);

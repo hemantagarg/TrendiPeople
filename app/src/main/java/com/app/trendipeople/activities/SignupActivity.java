@@ -402,9 +402,15 @@ public class SignupActivity extends AppCompatActivity implements ApiResponse {
                     //  AppUtils.setCompanyName(mActivity, data.getString("CompanyName"));
                     //AppUtils.setCountryId(mActivity, data.getString("CountryId"));
 
-                    Intent intent = new Intent(mActivity, UserDashboard.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+                    if (isFreelancer){
+                        Intent intent = new Intent(mActivity, VendorDashboard.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }else {
+                        Intent intent = new Intent(mActivity, UserDashboard.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
 
                 } else {
                     Toast.makeText(mActivity, commandResult.getString("message"), Toast.LENGTH_SHORT).show();

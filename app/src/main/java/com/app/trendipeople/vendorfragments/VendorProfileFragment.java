@@ -694,7 +694,7 @@ public class VendorProfileFragment extends BaseFragment implements ApiResponse {
                     JSONObject business_profile = data.getJSONObject("Business_profile");
 
                     if (!business_profile.getString("Banner").equalsIgnoreCase("")) {
-                        Picasso.with(mActivity).load(business_profile.getString("Banner")).into(image_user);
+                        Picasso.with(mActivity).load(business_profile.getString("Banner")).into(image_banner);
                     }
                     edtbusinessname.setText(business_profile.getString("Name"));
                     edtbusinessExp.setText(business_profile.getString("Experience"));
