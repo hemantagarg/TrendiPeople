@@ -129,7 +129,7 @@ orderId=id;
 
                     JSONObject data = commandResult.getJSONObject("data");
                     JSONArray array = data.getJSONArray("Booking");
-
+                    arrayList.clear();
                     for (int i = 0; i < array.length(); i++) {
 
                         JSONObject jo = array.getJSONObject(i);

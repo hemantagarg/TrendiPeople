@@ -110,7 +110,7 @@ public class FragementVendorCompleteBooking extends Fragment implements OnCustom
 
                     JSONObject data = commandResult.getJSONObject("data");
                     JSONArray array = data.getJSONArray("Booking");
-
+                    imagelist.clear();
                     for (int i = 0; i < array.length(); i++) {
 
                         JSONObject jo = array.getJSONObject(i);

@@ -698,18 +698,22 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
                     }
 
                     if (data.has("services")) {
-                        String service = "";
+                        String service = "", ServiceId = "";
                         JSONArray services = data.getJSONArray("services");
                         for (int i = 0; i < services.length(); i++) {
                             JSONObject object = services.getJSONObject(i);
                             if (service.equalsIgnoreCase("")) {
                                 service = object.getString("ServiceName");
+                                ServiceId = object.getString("ServiceId");
                             } else {
                                 service = service + ", " + object.getString("ServiceName");
+                                ServiceId = ServiceId + ", " + object.getString("ServiceId");
                             }
 
                         }
                         text_select_category.setText(service);
+                        selectedserviceName = service;
+                        selectedserviceName = ServiceId;
                     }
 
 
