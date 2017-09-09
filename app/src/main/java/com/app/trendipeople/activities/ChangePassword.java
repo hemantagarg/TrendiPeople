@@ -90,9 +90,8 @@ public class ChangePassword extends BaseFragment implements ApiResponse {
         if (AppUtils.isNetworkAvailable(mActivity)) {
 
             // http://dev.stackmindz.com/trendi/api/change-password.php?user_id=199&current_pwd=admin&new_pwd=123456&confirm_pwd=123456
-            String url = JsonApiHelper.BASEURL + JsonApiHelper.CHANGEPASSWORD + "user_id=" + 199 + "&current_pwd=" + edtold_password.getText().toString()
+            String url = JsonApiHelper.BASEURL + JsonApiHelper.CHANGEPASSWORD + "user_id=" + AppUtils.getUserId(mActivity) + "&current_pwd=" + edtold_password.getText().toString()
                     + "&new_pwd=" + edt_newpassword.getText().toString() + "&confirm_pwd=" + edtconfirmpassword.getText().toString();
-
 
             new CommonAsyncTaskHashmap(1, mActivity, this).getquery(url);
 
