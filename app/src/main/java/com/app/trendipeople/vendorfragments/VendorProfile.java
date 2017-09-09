@@ -688,7 +688,7 @@ public class VendorProfile extends BaseFragment implements ApiResponse {
                         }
                         text_select_category.setText(service);
                         selectedserviceName = service;
-                        selectedserviceName = ServiceId;
+                        selectedServiceId = ServiceId;
                     }
 
                     JSONObject business_profile = data.getJSONObject("Business_profile");

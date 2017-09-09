@@ -719,7 +719,7 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
                         }
                         text_select_category.setText(service);
                         selectedserviceName = service;
-                        selectedserviceName = ServiceId;
+                        selectedServiceId = ServiceId;
                     }
 
 
