@@ -565,11 +565,10 @@ public class VendorProfileFragment extends BaseFragment implements ApiResponse {
         String business_name = edtbusinessname.getText().toString();
         String mobileno = edtmobilenumber.getText().toString();
         String profileDesc = edtProfileDescription.getText().toString();
-        String website = edtWebsite.getText().toString();
 
 
         if (!first_name.equalsIgnoreCase("") && !emailaddress.equalsIgnoreCase("")
-                && !profileDesc.equalsIgnoreCase("") && !mobileno.equalsIgnoreCase("") && !website.equalsIgnoreCase("")
+                && !profileDesc.equalsIgnoreCase("") && !mobileno.equalsIgnoreCase("")
                 ) {
 
             if (!AppUtils.isEmailValid(emailaddress.trim())) {
@@ -592,9 +591,6 @@ public class VendorProfileFragment extends BaseFragment implements ApiResponse {
             } else if (emailaddress.equalsIgnoreCase("")) {
                 isValidLoginDetails = false;
                 Toast.makeText(mActivity, R.string.enterEmail, Toast.LENGTH_SHORT).show();
-            } else if (website.equalsIgnoreCase("")) {
-                isValidLoginDetails = false;
-                Toast.makeText(mActivity, R.string.enterwebsite, Toast.LENGTH_SHORT).show();
             } else if (profileDesc.equalsIgnoreCase("")) {
                 isValidLoginDetails = false;
                 Toast.makeText(mActivity, R.string.enterProfiledesc, Toast.LENGTH_SHORT).show();
@@ -677,19 +673,24 @@ public class VendorProfileFragment extends BaseFragment implements ApiResponse {
                     edtAddress.setText(data.getString("Address"));
                     edtProfileDescription.setText(data.getString("Address"));
                     if (data.has("services")) {
-                        String service = "";
+                        String service = "", ServiceId = "";
                         JSONArray services = data.getJSONArray("services");
                         for (int i = 0; i < services.length(); i++) {
                             JSONObject object = services.getJSONObject(i);
                             if (service.equalsIgnoreCase("")) {
                                 service = object.getString("ServiceName");
+                                ServiceId = object.getString("ServiceId");
                             } else {
                                 service = service + ", " + object.getString("ServiceName");
+                                ServiceId = ServiceId + ", " + object.getString("ServiceId");
                             }
 
                         }
                         text_select_category.setText(service);
+                        selectedserviceName = service;
+                        selectedserviceName = ServiceId;
                     }
+
                     JSONObject business_profile = data.getJSONObject("Business_profile");
 
                     if (!business_profile.getString("Banner").equalsIgnoreCase("")) {

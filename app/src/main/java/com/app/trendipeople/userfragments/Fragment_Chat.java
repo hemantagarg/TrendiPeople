@@ -95,15 +95,7 @@ public class Fragment_Chat extends BaseFragment implements ApiResponse, OnCustom
         list_request.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
         setlistener();
-       /* modelChat = new ModelChat();
-        modelChat.setRowType(1);
-        arrayList.add(modelChat);
-        arrayList.add(modelChat);
-        arrayList.add(modelChat);
-        arrayList.add(modelChat);
-        adapterChats=new AdapterChats(context,this,arrayList);
-        list_request.setAdapter(adapterChats);
-*/
+
         if (!AppUtils.getUserId(context).equalsIgnoreCase("")) {
             getServicelist();
         }

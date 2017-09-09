@@ -180,7 +180,6 @@ public class UserSettingFragment extends BaseFragment implements View.OnClickLis
                 break;
 
             case R.id.rl_changePassword:
-
                 ChangePassword changePassword = new ChangePassword();
                 setFragment(changePassword);
                 break;

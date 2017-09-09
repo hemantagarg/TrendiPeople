@@ -233,6 +233,7 @@ public class SearchFragment extends BaseFragment implements ApiResponse, OnCusto
                     }
                     adapterSearch = new AdapterSearch(mActivity, this, arrayList);
                     recyclerView.setAdapter(adapterSearch);
+                    AppUtils.onKeyBoardDown(mActivity);
                 } else {
                     Toast.makeText(mActivity, response.getString("message"), Toast.LENGTH_SHORT).show();
                 }

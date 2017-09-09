@@ -96,7 +96,7 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
     public static final String TEMP_PHOTO_FILE_NAME = "temp_photo.jpg";
     private boolean isBannerImage;
     private View view_bg;
-    RadioButton radio_male,radio_female;
+    RadioButton radio_male, radio_female;
 
     public static UserProfileFragment getInstance() {
         if (userProfileFragment == null)
@@ -230,8 +230,8 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
         btn_updateprofile = (Button) view.findViewById(R.id.btn_updateprofile);
         freelancerCheckbox = (AppCompatCheckBox) view.findViewById(R.id.freelancerCheckbox);
         user_name = (EditText) view.findViewById(edtName);
-        radio_male= (RadioButton) view.findViewById(R.id.radio_male);
-        radio_female= (RadioButton) view.findViewById(R.id.radio_female);
+        radio_male = (RadioButton) view.findViewById(R.id.radio_male);
+        radio_female = (RadioButton) view.findViewById(R.id.radio_female);
 
         user_name.setText(AppUtils.getUserName(getContext()));
         edtmobilenumber = (EditText) view.findViewById(R.id.edtmobilenumber);
@@ -447,7 +447,7 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
                     uploadPhoto();
                 } else {
                     seletedImageUser = selectedFilePath;
-                    Picasso.with(mActivity).load(seletedImageUser).transform(new CircleTransform()).into(image_user);
+                    Picasso.with(mActivity).load(seletedImageUser).placeholder(R.drawable.user).transform(new CircleTransform()).into(image_user);
                 }
                 break;
 
@@ -567,8 +567,7 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
 
 
         if (!first_name.equalsIgnoreCase("") && !emailaddress.equalsIgnoreCase("")
-                && !mobileno.equalsIgnoreCase("") && !website.equalsIgnoreCase("")
-                ) {
+                && !mobileno.equalsIgnoreCase("")) {
 
             if (!AppUtils.isEmailValid(emailaddress.trim())) {
                 isValidLoginDetails = false;
@@ -590,9 +589,6 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
             } else if (emailaddress.equalsIgnoreCase("")) {
                 isValidLoginDetails = false;
                 Toast.makeText(mActivity, R.string.enterEmail, Toast.LENGTH_SHORT).show();
-            } else if (website.equalsIgnoreCase("")) {
-                isValidLoginDetails = false;
-                Toast.makeText(mActivity, R.string.enterwebsite, Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -664,7 +660,7 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
                     JSONObject data = commandResult.getJSONObject("data");
                     edtWebsite.setText(data.getString("Website_Link"));
                     if (!data.getString("ProfilePic").equalsIgnoreCase("")) {
-                        Picasso.with(mActivity).load(data.getString("ProfilePic")).transform(new CircleTransform()).into(image_user);
+                        Picasso.with(mActivity).load(data.getString("ProfilePic")).placeholder(R.drawable.user).transform(new CircleTransform()).into(image_user);
                     }
                     user_name.setText(data.getString("Name"));
                     edtmobilenumber.setText(data.getString("Mobile"));
@@ -675,9 +671,9 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
                     edtAddress.setText(data.getString("Address"));
                     //   edtProfileDescription.setText(data.getString("Address"));
 
-                    if (data.getString("Gender").equalsIgnoreCase(AppConstant.MALE)){
+                    if (data.getString("Gender").equalsIgnoreCase(AppConstant.MALE)) {
                         radio_male.setChecked(true);
-                    }else {
+                    } else {
                         radio_female.setChecked(true);
                     }
                     if (data.getString("IsVendor").equalsIgnoreCase("1")) {
