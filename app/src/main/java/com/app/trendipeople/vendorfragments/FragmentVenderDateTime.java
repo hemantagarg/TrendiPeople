@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +48,6 @@ import java.util.Locale;
 
 public class FragmentVenderDateTime extends BaseFragment implements ApiResponse, OnCustomItemClicListener, TimePickerDialog.OnTimeSetListener {
 
-
     public static FragmentVenderDateTime alertFragment;
     private Activity mActivity;
     private View view;
@@ -58,8 +59,12 @@ public class FragmentVenderDateTime extends BaseFragment implements ApiResponse,
     private TextView mTvStartTime, mTvEndTime;
     private Button btnAdd, btn_save;
     private boolean isStartTime = false;
-    private
+    private Spinner spinner_services;
+    private ArrayList<String> serviceId = new ArrayList<>();
+    private ArrayList<String> serviceName = new ArrayList<>();
     String endTime = "", startTime = "";
+    ArrayAdapter<String> adapterService;
+    private String selectedServiceId = "";
     private final String TAG = FragmentVenderDateTime.class.getSimpleName();
 
     public static FragmentVenderDateTime getInstance() {
@@ -81,13 +86,10 @@ public class FragmentVenderDateTime extends BaseFragment implements ApiResponse,
         adapterTimeList = new AdapterTimeList(mActivity, this, arrayList);
         recyclerView.setAdapter(adapterTimeList);
 
-        //  getNotificationList();
         return view;
     }
 
     private void setListener() {
-
-
         mTvStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,7 +133,9 @@ public class FragmentVenderDateTime extends BaseFragment implements ApiResponse,
                         model.setEndTime(endTime);
                         model.setRowType(1);
                         arrayList.add(model);
-                        adapterTimeList.notifyDataSetChanged();
+
+                        adapterTimeList = new AdapterTimeList(mActivity, FragmentVenderDateTime.this, arrayList);
+                        recyclerView.setAdapter(adapterTimeList);
 
                         mTvEndTime.setText("");
                         mTvStartTime.setText("");
@@ -157,12 +161,16 @@ public class FragmentVenderDateTime extends BaseFragment implements ApiResponse,
 
                 if (arrayList.size() > 0) {
                     // saveData();
-                    if (calendarView.getSelectedDates().size() > 0) {
+                    if (calendarView.getSelectedDates().size() > 0 && !selectedServiceId.equalsIgnoreCase("")) {
                         List<CalendarDay> selectedDates = calendarView.getSelectedDates();
                         saveData(selectedDates);
 
                     } else {
-                        Toast.makeText(mActivity, "Please select date and time", Toast.LENGTH_SHORT).show();
+                        if (selectedServiceId.equalsIgnoreCase("")) {
+                            Toast.makeText(mActivity, "Please select Service", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(mActivity, "Please select date and time", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 } else {
                     Toast.makeText(mActivity, "Please add start time and end time", Toast.LENGTH_SHORT).show();
@@ -172,10 +180,24 @@ public class FragmentVenderDateTime extends BaseFragment implements ApiResponse,
 
     }
 
+    private void getServiceList() {
+        // http://dev.stackmindz.com/trendi/api/userservice.php?user_id=200
+        if (AppUtils.isNetworkAvailable(mActivity)) {
+
+            String url = JsonApiHelper.BASEURL + JsonApiHelper.USER_SRVICE + "user_id=" + AppUtils.getUserId(mActivity);
+            new CommonAsyncTaskHashmap(11, mActivity, this).getqueryNoProgress(url);
+
+        } else {
+            Toast.makeText(mActivity, mActivity.getResources().getString(R.string.message_network_problem), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
     private void initViews() {
         arrayList = new ArrayList<>();
         calendarView = (MaterialCalendarView) view.findViewById(R.id.calendarView);
         calendarView.setShowOtherDates(MaterialCalendarView.SHOW_OUT_OF_RANGE);
+        spinner_services = (Spinner) view.findViewById(R.id.spinner_services);
         calendarView.setSelectionMode(MaterialCalendarView.SELECTION_MODE_MULTIPLE);
         Calendar calendar = Calendar.getInstance();
         calendarView.state().edit().setCalendarDisplayMode(CalendarMode.MONTHS)
@@ -188,6 +210,7 @@ public class FragmentVenderDateTime extends BaseFragment implements ApiResponse,
         recyclerView.setLayoutManager(new GridLayoutManager(mActivity, 3));
         recyclerView.setNestedScrollingEnabled(false);
         manageHeaderView();
+        getServiceList();
 
     }
 
@@ -245,7 +268,6 @@ public class FragmentVenderDateTime extends BaseFragment implements ApiResponse,
                     JSONObject timeObject = new JSONObject();
                     timeObject.put("start_time", arrayList.get(j).getStartTime());
                     timeObject.put("end_time", arrayList.get(j).getEndTime());
-
                     times.put(timeObject);
                 }
                 data.put("time", times);
@@ -257,7 +279,7 @@ public class FragmentVenderDateTime extends BaseFragment implements ApiResponse,
             // &user_id=201
             if (AppUtils.isNetworkAvailable(mActivity)) {
                 String url = JsonApiHelper.BASEURL + JsonApiHelper.SAVE_SERVICE_DATETIME + "user_id=" + AppUtils.getUserId(mActivity)
-                        + "&date=" + main;
+                        + "&service_id=" + selectedServiceId + "&date=" + main;
                 new CommonAsyncTaskHashmap(1, mActivity, this).getquery(url);
 
             } else {
@@ -320,6 +342,22 @@ public class FragmentVenderDateTime extends BaseFragment implements ApiResponse,
                     if (getUserVisibleHint()) {
                         Toast.makeText(mActivity, commandResult.getString("message"), Toast.LENGTH_SHORT).show();
                     }
+                }
+            } else if (method == 11) {
+                JSONObject commandResult = response.getJSONObject("commandResult");
+                if (commandResult.getString("success").equalsIgnoreCase("1")) {
+                    arrayList = new ArrayList<>();
+
+                    JSONObject data = commandResult.getJSONObject("data");
+                    JSONArray services = data.getJSONArray("Services");
+                    for (int i = 0; i < services.length(); i++) {
+
+                        JSONObject jo = services.getJSONObject(i);
+                        serviceId.add(jo.getString("ServiceId"));
+                        serviceName.add(jo.getString("ServiceName"));
+                    }
+                    adapterService = new ArrayAdapter<String>(mActivity, R.layout.row_spinner, R.id.text_view, serviceName);
+                    spinner_services.setAdapter(adapterService);
                 }
             }
         } catch (Exception e) {
