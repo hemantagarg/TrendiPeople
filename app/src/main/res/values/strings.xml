@@ -50,7 +50,7 @@
     <string name="change_password">Change Password</string>
     <string name="my_booking">My Booking</string>
     <string name="switch_freelancer">Switch to Freelancer</string>
-    <string name="share_us">Share Us</string>
+    <string name="share_us">Share this app</string>
     <string name="rate_us">Rate Us</string>
     <string name="logout">Logout</string>
     <string name="sign_in">SIGN IN</string>
@@ -75,7 +75,7 @@
     <string name="title_activity_forgot_password">ForgotPassword</string>
     <string name="submit">Submit</string>
     <string name="booking">Booking</string>
-    <string name="switch_to_user">Switch to User</string>
+    <string name="switch_to_user">Switch to Client</string>
     <string name="my_profile">My Profile</string>
     <string name="portfolio">Portfolio</string>
     <string name="services">Services</string>
