@@ -74,9 +74,9 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
     private final String TAG = UserProfileFragment.class.getSimpleName();
     private EditText user_name, edtmobilenumber, edtEmailId, edtWebsite, edtProfileDescription,
             edtbusinessname, edtAddress, edtbusinessEmail, edtbusinessAddress, edtAbout,
-            edtbusinessExp, edtbusinessDesc, edtlanguage, edtQualification;
+            edtbusinessDesc, edtlanguage, edtQualification;
     private TextView text_select_category;
-    private RadioGroup radioGender;
+    private RadioGroup radioGender, radioExperience;
     private RelativeLayout rl_category;
     private ImageView image_edit, image_user, image_banner;
     private Button btn_updateprofile;
@@ -96,7 +96,8 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
     public static final String TEMP_PHOTO_FILE_NAME = "temp_photo.jpg";
     private boolean isBannerImage;
     private View view_bg;
-    RadioButton radio_male, radio_female;
+    RadioButton radio_male, radio_female, radio_junior, radio_intermediate, radio_professional;
+    String expLevel = "";
 
     public static UserProfileFragment getInstance() {
         if (userProfileFragment == null)
@@ -174,6 +175,22 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
 
             }
         });
+
+        radioExperience.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int checkedId) {
+                if (checkedId == R.id.radio_junior) {
+                    expLevel = "1";
+                } else if (checkedId == R.id.radio_intermediate) {
+                    expLevel = "2";
+                }else if (checkedId == R.id.radio_professional) {
+                    expLevel = "3";
+                }
+
+            }
+        });
+
+
         freelancerCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -201,24 +218,17 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
 
                 if (isValidLoginDetails()) {
                     if (freelancerCheckbox.isChecked()) {
-
-                        if (!text_select_category.getText().toString().equalsIgnoreCase("") && !edtbusinessname.getText().toString().equalsIgnoreCase("") && !edtbusinessEmail.getText().toString().equalsIgnoreCase("")) {
+                        if (!text_select_category.getText().toString().equalsIgnoreCase("")) {
                             updateProfile(AppConstant.FREELANCER);
                         } else {
                             if (selectedServiceId.equalsIgnoreCase("")) {
                                 Toast.makeText(mActivity, R.string.enterCategory, Toast.LENGTH_SHORT).show();
-                            } else if (edtbusinessname.getText().toString().equalsIgnoreCase("")) {
-                                Toast.makeText(mActivity, R.string.enterBusinessname, Toast.LENGTH_SHORT).show();
-                            } else if (edtbusinessEmail.getText().toString().equalsIgnoreCase("")) {
-                                Toast.makeText(mActivity, R.string.enterBusinessemail, Toast.LENGTH_SHORT).show();
                             }
                         }
                     } else {
                         updateProfile(AppConstant.USER);
                     }
-
                 }
-
             }
         });
     }
@@ -232,7 +242,10 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
         user_name = (EditText) view.findViewById(edtName);
         radio_male = (RadioButton) view.findViewById(R.id.radio_male);
         radio_female = (RadioButton) view.findViewById(R.id.radio_female);
-
+        radio_junior = (RadioButton) view.findViewById(R.id.radio_junior);
+        radio_intermediate = (RadioButton) view.findViewById(R.id.radio_intermediate);
+        radio_professional = (RadioButton) view.findViewById(R.id.radio_professional);
+        radioExperience = (RadioGroup) view.findViewById(R.id.radioExperience);
         user_name.setText(AppUtils.getUserName(getContext()));
         edtmobilenumber = (EditText) view.findViewById(R.id.edtmobilenumber);
         edtmobilenumber.setText(AppUtils.getUserMobile(getContext()));
@@ -242,7 +255,7 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
         edtbusinessEmail = (EditText) view.findViewById(R.id.edtbusinessEmail);
         edtbusinessAddress = (EditText) view.findViewById(R.id.edtbusinessAddress);
         edtAbout = (EditText) view.findViewById(R.id.edtAbout);
-        edtbusinessExp = (EditText) view.findViewById(R.id.edtbusinessExp);
+
         edtbusinessDesc = (EditText) view.findViewById(R.id.edtbusinessDesc);
         edtAddress = (EditText) view.findViewById(R.id.edtAddress);
         edtlanguage = (EditText) view.findViewById(R.id.edtlanguage);
@@ -489,7 +502,7 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
             hm.put("business_quali", edtQualification.getText().toString());
             hm.put("business_desc", edtbusinessDesc.getText().toString());
             hm.put("website_link", edtWebsite.getText().toString());
-            hm.put("business_exp", edtbusinessExp.getText().toString());
+            hm.put("business_exp", expLevel);
             hm.put("business_name", edtbusinessname.getText().toString());
             hm.put("business_address", edtbusinessAddress.getText().toString());
             hm.put("business_email", edtbusinessEmail.getText().toString());
@@ -682,11 +695,12 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
                         freelancerCheckbox.setChecked(false);
                     }
 
-
                     JSONObject business_profile = data.getJSONObject("Business_profile");
 
                     if (business_profile.has("Id")) {
                         AppUtils.setBusinessId(mActivity, business_profile.getString("Id"));
+                        freelancerCheckbox.setVisibility(View.GONE);
+                        llFrelancer.setVisibility(View.VISIBLE);
                     }
 
                     if (business_profile.has("Name")) {
@@ -694,7 +708,6 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
                             Picasso.with(mActivity).load(business_profile.getString("Banner")).into(image_user);
                         }
                         edtbusinessname.setText(business_profile.getString("Name"));
-                        edtbusinessExp.setText(business_profile.getString("Experience"));
                         edtbusinessEmail.setText(business_profile.getString("Email"));
                         edtAbout.setText(business_profile.getString("About"));
                         edtbusinessDesc.setText(business_profile.getString("Description"));
