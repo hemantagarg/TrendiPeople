@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.trendipeople.R;
+import com.app.trendipeople.aynctask.CommonAsyncTask;
 import com.app.trendipeople.aynctask.CommonAsyncTaskHashmap;
 import com.app.trendipeople.interfaces.ApiResponse;
 import com.app.trendipeople.interfaces.JsonApiHelper;
@@ -121,6 +122,34 @@ public class SignupActivity extends AppCompatActivity implements ApiResponse {
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }
+    }
+
+    private void social_register(String socialtype, String name, String email, String number, String social_id) {
+
+        if (AppUtils.isNetworkAvailable(mActivity)) {
+
+            String user_type = "";
+            if (isFreelancer) {
+                user_type = AppConstant.FREELANCER;
+            } else {
+                user_type = AppConstant.USER;
+            }
+
+            // http://dev.stackmindz.com/trendi/api/registeration.php?name=amitgarg&mobile=880207385&password=123456
+            // &user_type=3&latitude=&longitude=&service_id=2,3
+            // &address=ssasasa&email=ammit@gmail.com&gcm=dfdg&device_type=1&imei=&social_type=&social_id=
+
+            String url = JsonApiHelper.BASEURL + JsonApiHelper.REGISTRATION +
+                    "name=" + edtFirstname.getText().toString() + edtLastname.getText().toString()
+                    + "&mobile=" + edtMobileno.getText().toString() + "&password=" + edtPassword.getText().toString() + "&user_type=" + user_type
+                    + "&service_id=" + selectedServiceId + "&address=" + edtAddress.getText().toString() + "&email=" + edtEmailId.getText().toString() + "&gcm=" + AppUtils.getGcmRegistrationKey(mActivity)
+                    + "&device_type=" + AppConstant.DEVICE_TYPE + "&imei=" + "" + "&latitude=" + latitude + "&longitude=" + longitude + "&social_id=" + social_id + "&social_type=" + socialtype;
+
+            new CommonAsyncTask(1, mActivity, SignupActivity.this).getquery(url);
+
+        } else {
+            Toast.makeText(mActivity, getResources().getString(R.string.message_network_problem), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -260,6 +289,7 @@ public class SignupActivity extends AppCompatActivity implements ApiResponse {
             text_select_category.setText(selectedserviceName);
         }
     }
+
     private void clickableText() {
         SpannableString ss = new SpannableString("I agree with terms and condition and privacy policy");
         ClickableSpan clickableSpan = new ClickableSpan() {
@@ -300,6 +330,7 @@ public class SignupActivity extends AppCompatActivity implements ApiResponse {
         text_terms.setHighlightColor(Color.TRANSPARENT);
 
     }
+
     private void signupUser() {
 
         //  http://onlineworkpro.com/trendi/api/register.php?name=aa&mobile=7895689562&password=123456&user_type=1
@@ -402,11 +433,11 @@ public class SignupActivity extends AppCompatActivity implements ApiResponse {
                     //  AppUtils.setCompanyName(mActivity, data.getString("CompanyName"));
                     //AppUtils.setCountryId(mActivity, data.getString("CountryId"));
 
-                    if (isFreelancer){
+                    if (isFreelancer) {
                         Intent intent = new Intent(mActivity, VendorDashboard.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
-                    }else {
+                    } else {
                         Intent intent = new Intent(mActivity, UserDashboard.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);

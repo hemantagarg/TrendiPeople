@@ -24,6 +24,8 @@ public interface JsonApiHelper {
     String SERVICE = "service.php?";
     String SEARCH_SERVICE = "searchService.php?";
     String LOGIN = "login.php?";
+    String LOGIN_CHECK = "login-check.php?";
+    String REGISTRATION = "registeration.php?";
     String ORDER = "order.php?";
     String GET_GALLERY = "getGalleryList.php?";
     String DELETE_GALLERY = "deleteGallery.php?";
