@@ -26,6 +26,8 @@ import com.app.trendipeople.interfaces.HeaderViewClickListener;
 import com.app.trendipeople.interfaces.JsonApiHelper;
 import com.app.trendipeople.utils.AppConstant;
 import com.app.trendipeople.utils.AppUtils;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 
 import org.json.JSONObject;
 
@@ -51,6 +53,7 @@ public class UserSettingFragment extends BaseFragment implements View.OnClickLis
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.setting_fragment, container, false);
         mActivity = getActivity();
+        FacebookSdk.sdkInitialize(mActivity);
         settingFragment = this;
         initViews();
         manageHeaderView();
@@ -197,7 +200,9 @@ public class UserSettingFragment extends BaseFragment implements View.OnClickLis
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         AppUtils.setUserId(mActivity, "");
+                        LoginManager.getInstance().logOut();
                         UserDashboard.getInstance().onResume();
+
                     }
                 });
 

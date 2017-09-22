@@ -111,6 +111,7 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.user_profile_fragment, container, false);
         mActivity = getActivity();
+
         userProfileFragment = this;
         initViews();
 
@@ -182,7 +183,7 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
                     expLevel = "1";
                 } else if (checkedId == R.id.radio_intermediate) {
                     expLevel = "2";
-                }else if (checkedId == R.id.radio_professional) {
+                } else if (checkedId == R.id.radio_professional) {
                     expLevel = "3";
                 }
 
@@ -578,29 +579,14 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
         String website = edtWebsite.getText().toString();
 
 
-        if (!first_name.equalsIgnoreCase("") && !emailaddress.equalsIgnoreCase("")
-                && !mobileno.equalsIgnoreCase("")) {
+        if (!first_name.equalsIgnoreCase("")) {
 
-            if (!AppUtils.isEmailValid(emailaddress.trim())) {
-                isValidLoginDetails = false;
-                Toast.makeText(mActivity, R.string.validEmail, Toast.LENGTH_SHORT).show();
-            } else if (mobileno.length() < 10) {
-                isValidLoginDetails = false;
-                Toast.makeText(mActivity, R.string.mobileno_Length, Toast.LENGTH_SHORT).show();
-            } else {
-                isValidLoginDetails = true;
-            }
+            isValidLoginDetails = true;
 
         } else {
             if (first_name.equalsIgnoreCase("")) {
                 isValidLoginDetails = false;
                 Toast.makeText(mActivity, R.string.enterFirstName, Toast.LENGTH_SHORT).show();
-            } else if (mobileno.equalsIgnoreCase("")) {
-                isValidLoginDetails = false;
-                Toast.makeText(mActivity, R.string.enterPhone, Toast.LENGTH_SHORT).show();
-            } else if (emailaddress.equalsIgnoreCase("")) {
-                isValidLoginDetails = false;
-                Toast.makeText(mActivity, R.string.enterEmail, Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -713,6 +699,16 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
                         edtbusinessAddress.setText(business_profile.getString("Address"));
                         edtlanguage.setText(business_profile.getString("Language"));
                         edtQualification.setText(business_profile.getString("Qualification"));
+
+
+                        if (business_profile.getString("Experience").equalsIgnoreCase("1")) {
+                            radio_junior.setChecked(true);
+                        } else if (business_profile.getString("Experience").equalsIgnoreCase("2")) {
+                            radio_intermediate.setChecked(true);
+                        } else if (business_profile.getString("Experience").equalsIgnoreCase("3")) {
+                            radio_professional.setChecked(true);
+                        }
+
                     }
 
                     if (data.has("services")) {

@@ -75,7 +75,7 @@ public class VendorProfile extends BaseFragment implements ApiResponse {
             edtbusinessname, edtAddress, edtbusinessEmail, edtbusinessAddress, edtAbout,
             edtbusinessDesc, edtlanguage, edtQualification;
     private TextView text_select_category;
-    private RadioGroup radioGender,radioExperience;
+    private RadioGroup radioGender, radioExperience;
     private RelativeLayout rl_category;
     private ImageView image_edit, image_user, image_banner;
     private Button btn_updateprofile;
@@ -174,7 +174,7 @@ public class VendorProfile extends BaseFragment implements ApiResponse {
                     expLevel = "1";
                 } else if (checkedId == R.id.radio_intermediate) {
                     expLevel = "2";
-                }else if (checkedId == R.id.radio_professional) {
+                } else if (checkedId == R.id.radio_professional) {
                     expLevel = "3";
                 }
 
@@ -583,30 +583,17 @@ public class VendorProfile extends BaseFragment implements ApiResponse {
         String profileDesc = edtProfileDescription.getText().toString();
 
 
-        if (!first_name.equalsIgnoreCase("") && !emailaddress.equalsIgnoreCase("")
-                && !profileDesc.equalsIgnoreCase("") && !mobileno.equalsIgnoreCase("")
+        if (!first_name.equalsIgnoreCase("")
+                && !profileDesc.equalsIgnoreCase("")
                 ) {
 
-            if (!AppUtils.isEmailValid(emailaddress.trim())) {
-                isValidLoginDetails = false;
-                Toast.makeText(mActivity, R.string.validEmail, Toast.LENGTH_SHORT).show();
-            } else if (mobileno.length() < 10) {
-                isValidLoginDetails = false;
-                Toast.makeText(mActivity, R.string.mobileno_Length, Toast.LENGTH_SHORT).show();
-            } else {
                 isValidLoginDetails = true;
-            }
+
 
         } else {
             if (first_name.equalsIgnoreCase("")) {
                 isValidLoginDetails = false;
                 Toast.makeText(mActivity, R.string.enterFirstName, Toast.LENGTH_SHORT).show();
-            } else if (mobileno.equalsIgnoreCase("")) {
-                isValidLoginDetails = false;
-                Toast.makeText(mActivity, R.string.enterPhone, Toast.LENGTH_SHORT).show();
-            } else if (emailaddress.equalsIgnoreCase("")) {
-                isValidLoginDetails = false;
-                Toast.makeText(mActivity, R.string.enterEmail, Toast.LENGTH_SHORT).show();
             } else if (profileDesc.equalsIgnoreCase("")) {
                 isValidLoginDetails = false;
                 Toast.makeText(mActivity, R.string.enterProfiledesc, Toast.LENGTH_SHORT).show();
@@ -719,6 +706,13 @@ public class VendorProfile extends BaseFragment implements ApiResponse {
                     edtbusinessAddress.setText(business_profile.getString("Address"));
                     edtlanguage.setText(business_profile.getString("Language"));
                     edtQualification.setText(business_profile.getString("Qualification"));
+                    if (business_profile.getString("Experience").equalsIgnoreCase("1")) {
+                        radio_junior.setChecked(true);
+                    } else if (business_profile.getString("Experience").equalsIgnoreCase("2")) {
+                        radio_intermediate.setChecked(true);
+                    } else if (business_profile.getString("Experience").equalsIgnoreCase("3")) {
+                        radio_professional.setChecked(true);
+                    }
 
                 } else {
                     Toast.makeText(mActivity, commandResult.getString("message"), Toast.LENGTH_SHORT).show();

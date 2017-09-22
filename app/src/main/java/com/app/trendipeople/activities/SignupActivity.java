@@ -62,8 +62,10 @@ public class SignupActivity extends AppCompatActivity implements ApiResponse {
     private EditText edtAddress;
     String latitude = "0.0", longitude = "0.0";
     CheckBox checkbox_terms;
-
     TextView text_terms;
+    private String mSocialtype = "";
+    private String mSocial_id = "";
+    private String mName = "";
 
 
     @Override
@@ -80,6 +82,13 @@ public class SignupActivity extends AppCompatActivity implements ApiResponse {
             longitude = "" + gps.getLongitude();
         } else {
             showSettingsAlert();
+        }
+
+        Intent intent = getIntent();
+        if (intent.hasExtra("socialId")) {
+            mName = intent.getStringExtra("name");
+            mSocial_id = intent.getStringExtra("socialId");
+            mSocialtype = intent.getStringExtra("socialType");
         }
 
         setCurrentLocation();
@@ -250,7 +259,12 @@ public class SignupActivity extends AppCompatActivity implements ApiResponse {
                     if (isFreelancer) {
                         if (!text_select_category.getText().toString().equalsIgnoreCase("")) {
                             if (checkbox_terms.isChecked()) {
-                                signupUser();
+
+                                if (mSocial_id.equalsIgnoreCase(""))
+                                    signupUser();
+                                else
+                                    social_register(mSocialtype, mName, edtEmailId.getText().toString(), edtMobileno.getText().toString(), mSocial_id);
+
                             } else {
                                 Toast.makeText(mActivity, "Please agree to our terms & conditions", Toast.LENGTH_SHORT).show();
                             }

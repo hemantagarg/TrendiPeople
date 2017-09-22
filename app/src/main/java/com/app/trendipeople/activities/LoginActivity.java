@@ -62,6 +62,9 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
     String sName = "", sEmail = "", sId = "", sSocialType = "";
     private CallbackManager callbackManager;
     private String TAG = LoginActivity.class.getSimpleName();
+    private String mSocialtype = "";
+    private String mSocial_id = "";
+    private String mName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,29 +98,6 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
         }
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
-        if (opr.isDone()) {
-            // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
-            // and the GoogleSignInResult will be available instantly.
-            Log.d(TAG, "Got cached sign-in");
-            GoogleSignInResult result = opr.get();
-            handleSignInResult(result);
-        } else {
-            // If the user has not previously signed in on this device or the sign-in has expired,
-            // this asynchronous branch will attempt to sign in the user silently.  Cross-device
-            // single sign-on will occur in this branch.
-            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-                @Override
-                public void onResult(GoogleSignInResult googleSignInResult) {
-                    handleSignInResult(googleSignInResult);
-                }
-            });
-        }
-    }
     public void showSettingsAlert() {
         try {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(mActivity);
@@ -223,7 +203,7 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
         if (callbackManager != null) {
             callbackManager.onActivityResult(requestCode, resultCode, data);
             Bundle b = data.getExtras();
-            Log.e("Data", "&&&&&&&&&" + b.getString("name"));
+            Log.e("FbData", "&&&&&&&&&" + data.getExtras() + b.getString("name"));
         }
 
         if (requestCode == RC_SIGN_IN) {
@@ -264,14 +244,18 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
     private void social_login(String socialtype, String name, String email, String number, String social_id) {
 
         if (AppUtils.isNetworkAvailable(mActivity)) {
+            mSocialtype = socialtype;
+            mSocial_id = social_id;
+            mName = name;
 
             // http://dev.stackmindz.com/trendi/api/login-check.php?mobile=1234567890&password=123456&gcm=fsfsdfsdfdsfsfsdf
             // &device_type=1&device_id=&social_type=&social_id=
 
-         String   url = JsonApiHelper.BASEURL + JsonApiHelper.LOGIN_CHECK
-                 + "email=" + email + "&first_name=" + name + "&mobile=" + number
-                    + "&password=" + edtPassword.getText().toString() + "&login_type=" + socialtype + "&social_id=" + social_id+"&social_type="+socialtype
+            String url = JsonApiHelper.BASEURL + JsonApiHelper.LOGIN_CHECK
+                    + "email=" + email + "&first_name=" + name + "&mobile=" + number
+                    + "&password=" + edtPassword.getText().toString() + "&login_type=" + socialtype + "&social_id=" + social_id + "&social_type=" + socialtype
                     + "&gcm=" + AppUtils.getGcmRegistrationKey(mActivity) + "&device_type=" + AppConstant.DEVICE_TYPE;
+            url = url.replace(" ", "%20");
 
             new CommonAsyncTask(2, mActivity, LoginActivity.this).getquery(url);
 
@@ -279,7 +263,6 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
             Toast.makeText(mActivity, getResources().getString(R.string.message_network_problem), Toast.LENGTH_SHORT).show();
         }
     }
-
 
 
     private void loginUser() {
@@ -345,7 +328,7 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
                             } else {
                                 number = "";
                             }
-                            social_login("2", object.getString("name"), email, number, object.getString("id"));
+                            social_login("facebook", object.getString("name"), email, number, object.getString("id"));
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -413,35 +396,45 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
 
                     Toast.makeText(mActivity, commandResult.getString("message"), Toast.LENGTH_SHORT).show();
                 }
-            }else   if (method == 2) {
+            } else if (method == 2) {
 
                 JSONObject commandResult = response.getJSONObject("commandResult");
 
                 if (commandResult.getString("success").equalsIgnoreCase("1")) {
 
                     JSONObject data = commandResult.getJSONObject("data");
+                    if (data.getString("newuser").equalsIgnoreCase("0")) {
 
-                    AppUtils.setUserId(mActivity, data.getString("UserId"));
-                    AppUtils.setUserRole(mActivity, data.getString("UserType"));
-                    AppUtils.setUserName(mActivity, data.getString("Name"));
-                    AppUtils.setUseremail(mActivity, data.getString("Email"));
-                    AppUtils.setUserMobile(mActivity, data.getString("Mobile"));
-                    AppUtils.setUserImage(mActivity, data.getString("ProfilePic"));
-                    AppUtils.setCategories(mActivity, data.getJSONArray("services").toString());
+                        Intent intent = new Intent(mActivity, SignupActivity.class);
+                        intent.putExtra("name", mName);
+                        intent.putExtra("socialId", mSocial_id);
+                        intent.putExtra("socialType", mSocialtype);
+                        startActivity(intent);
 
-                    if (data.has("Business_profile")) {
-                        JSONObject business_profile = data.getJSONObject("Business_profile");
-                        if (business_profile.has("Id")) {
-                            AppUtils.setBusinessId(mActivity, business_profile.getString("Id"));
+                    } else {
+
+                        AppUtils.setUserId(mActivity, data.getString("UserId"));
+                        AppUtils.setUserRole(mActivity, data.getString("UserType"));
+                        AppUtils.setUserName(mActivity, data.getString("Name"));
+                        AppUtils.setUseremail(mActivity, data.getString("Email"));
+                        AppUtils.setUserMobile(mActivity, data.getString("Mobile"));
+                        AppUtils.setUserImage(mActivity, data.getString("ProfilePic"));
+                        AppUtils.setCategories(mActivity, data.getJSONArray("services").toString());
+
+                        if (data.has("Business_profile")) {
+                            JSONObject business_profile = data.getJSONObject("Business_profile");
+                            if (business_profile.has("Id")) {
+                                AppUtils.setBusinessId(mActivity, business_profile.getString("Id"));
+                            }
                         }
-                    }
 
-                    if (AppUtils.getUserRole(mActivity).equalsIgnoreCase(AppConstant.FREELANCER)) {
-                        startActivity(new Intent(mActivity, VendorDashboard.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                        finish();
-                    } else if (AppUtils.getUserRole(mActivity).equalsIgnoreCase(AppConstant.USER)) {
-                        startActivity(new Intent(mActivity, UserDashboard.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                        finish();
+                        if (AppUtils.getUserRole(mActivity).equalsIgnoreCase(AppConstant.FREELANCER)) {
+                            startActivity(new Intent(mActivity, VendorDashboard.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                            finish();
+                        } else if (AppUtils.getUserRole(mActivity).equalsIgnoreCase(AppConstant.USER)) {
+                            startActivity(new Intent(mActivity, UserDashboard.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                            finish();
+                        }
                     }
 
                 } else {
