@@ -48,7 +48,9 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
+        <activity android:name=".activities.ZoomImageAcivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".stripe.PaymentActivity"
             android:theme="@style/AppTheme.NoActionBar">

@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.trendipeople.R;
+import com.app.trendipeople.activities.ZoomImageAcivity;
 import com.app.trendipeople.adapter.AdapterVendorPortfolio;
 import com.app.trendipeople.aynctask.CommonAsyncTaskAquery;
 import com.app.trendipeople.aynctask.CommonAsyncTaskHashmap;
@@ -413,6 +414,14 @@ public class FragmentVendorPortfolio extends BaseFragment implements OnCustomIte
         if (flag == 1) {
             deletePosition = position;
             deleteImage(position);
+        } if (flag == 2) {
+            Intent intent = new Intent(mActivity, ZoomImageAcivity.class);
+            try {
+                intent.putExtra("imageurl", arrayList.get(position).getPorfolioImage());
+                startActivity(intent);
+            } catch (Exception e) {
+                Log.w(getClass().toString(), e);
+            }
         }
     }
 

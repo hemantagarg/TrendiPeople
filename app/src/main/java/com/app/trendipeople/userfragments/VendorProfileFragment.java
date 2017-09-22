@@ -210,7 +210,6 @@ public class VendorProfileFragment extends BaseFragment implements View.OnClickL
         }
 
     }
-
     @Override
     public void onPostFail(int method, String response) {
 

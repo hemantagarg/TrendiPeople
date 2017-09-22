@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/stackmindz/Documents/KkWorkspace/TrendiPeople/TrendiPeople/TrendiPeople/simple-crop-image-lib/src/main/jniLibs"/></dataSet><dataSet config="release"><source path="/Users/stackmindz/Documents/KkWorkspace/TrendiPeople/TrendiPeople/TrendiPeople/simple-crop-image-lib/src/release/jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="E:\workspace_new\WorkspaceTrendyPeople\TrendyPeople\simple-crop-image-lib\src\main\jniLibs"/></dataSet><dataSet config="release"><source path="E:\workspace_new\WorkspaceTrendyPeople\TrendyPeople\simple-crop-image-lib\src\release\jniLibs"/></dataSet></merger>

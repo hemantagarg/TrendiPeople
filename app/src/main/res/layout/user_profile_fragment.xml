@@ -139,9 +139,9 @@
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:visibility="gone"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp5">
+                    android:layout_marginTop="@dimen/dp5"
+                    android:visibility="gone">
 
                     <EditText
                         android:id="@+id/edtWebsite"
@@ -157,9 +157,9 @@
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:visibility="gone"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/dp5">
+                    android:layout_marginTop="@dimen/dp5"
+                    android:visibility="gone">
 
                     <EditText
                         android:id="@+id/edtProfileDescription"
@@ -264,7 +264,8 @@
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp5">
+                            android:layout_marginTop="@dimen/dp5"
+                            android:visibility="gone">
 
                             <EditText
                                 android:id="@+id/edtbusinessname"
@@ -281,7 +282,8 @@
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp5">
+                            android:layout_marginTop="@dimen/dp5"
+                            android:visibility="gone">
 
                             <EditText
                                 android:id="@+id/edtbusinessEmail"
@@ -298,7 +300,8 @@
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp5">
+                            android:layout_marginTop="@dimen/dp5"
+                            android:visibility="gone">
 
                             <EditText
                                 android:id="@+id/edtbusinessAddress"
@@ -360,27 +363,53 @@
 
                         </android.support.design.widget.TextInputLayout>
 
-                        <android.support.design.widget.TextInputLayout
+                        <TextView
+                            android:id="@+id/edtbusinessExp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp5">
+                            android:text="Experience Level"
+                            android:padding="@dimen/dp10"
+                            android:singleLine="true"
+                            android:textColor="@color/textcolordark"
+                            android:textSize="@dimen/text_size_14" />
 
-                            <EditText
-                                android:id="@+id/edtbusinessExp"
-                                android:layout_width="match_parent"
+
+                        <RadioGroup
+                            android:id="@+id/radioExperience"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="5.5">
+
+                            <RadioButton
+                                android:id="@+id/radio_junior"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:hint="Business Experience"
-                                android:padding="@dimen/dp10"
-                                android:singleLine="true"
-                                android:textColor="@color/textcolordark"
-                                android:textSize="@dimen/text_size_14" />
+                                android:layout_weight="1.5"
+                                android:text="Junior" />
 
-                        </android.support.design.widget.TextInputLayout>
+                            <RadioButton
+                                android:id="@+id/radio_intermediate"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Intermediate" />
+
+                            <RadioButton
+                                android:id="@+id/radio_professional"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Professional" />
+
+                        </RadioGroup>
+
 
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp5">
+                            android:layout_marginTop="@dimen/dp5"
+                            android:visibility="gone">
 
                             <EditText
                                 android:id="@+id/edtbusinessDesc"

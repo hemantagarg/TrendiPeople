@@ -60,6 +60,12 @@ public class AdapterVendorPortfolio extends RecyclerView.Adapter<AdapterVendorPo
                 listener.onItemClickListener(i, 1);
             }
         });
+        customViewHolder.image_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onItemClickListener(i, 2);
+            }
+        });
     }
 
     @Override
