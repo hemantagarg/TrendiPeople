@@ -137,6 +137,7 @@
                     android:layout_width="@dimen/dp_40"
                     android:layout_height="@dimen/dp_40"
                     android:layout_marginLeft="@dimen/dp10"
+                    android:visibility="gone"
                     android:layout_marginRight="@dimen/dp10"
                     android:src="@drawable/google_plus" />
 
@@ -145,6 +146,7 @@
                     android:layout_width="@dimen/dp_40"
                     android:layout_height="@dimen/dp_40"
                     android:layout_marginLeft="@dimen/dp10"
+                    android:visibility="gone"
                     android:src="@drawable/instagram" />
 
             </LinearLayout>

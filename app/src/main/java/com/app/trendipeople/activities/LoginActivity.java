@@ -39,6 +39,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 
 import org.json.JSONObject;
 
@@ -73,6 +75,7 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
             StrictMode.setThreadPolicy(policy);
         }
         mActivity = LoginActivity.this;
+        initViews();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -82,7 +85,6 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
                 .build();
         registerFacebookCallback();
 
-        initViews();
         setListener();
         GPSTracker gps = new GPSTracker(mActivity);
         if (gps.canGetLocation()) {
@@ -93,7 +95,29 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
 
+        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
+        if (opr.isDone()) {
+            // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
+            // and the GoogleSignInResult will be available instantly.
+            Log.d(TAG, "Got cached sign-in");
+            GoogleSignInResult result = opr.get();
+            handleSignInResult(result);
+        } else {
+            // If the user has not previously signed in on this device or the sign-in has expired,
+            // this asynchronous branch will attempt to sign in the user silently.  Cross-device
+            // single sign-on will occur in this branch.
+            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
+                @Override
+                public void onResult(GoogleSignInResult googleSignInResult) {
+                    handleSignInResult(googleSignInResult);
+                }
+            });
+        }
+    }
     public void showSettingsAlert() {
         try {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(mActivity);
@@ -236,19 +260,20 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
         } else {
         }
     }
-    // http://packmygift.com/api/login.php?login_type=2&email=aa@gmail.com&gcm=dsfsd
-    // &device_type=aa&social_id=1235&first_name=dsfdsa&last_name=jkjk&mobile=4565&address=dfd
 
     private void social_login(String socialtype, String name, String email, String number, String social_id) {
 
         if (AppUtils.isNetworkAvailable(mActivity)) {
 
-         String   url = JsonApiHelper.BASEURL + JsonApiHelper.LOGIN
+            // http://dev.stackmindz.com/trendi/api/login-check.php?mobile=1234567890&password=123456&gcm=fsfsdfsdfdsfsfsdf
+            // &device_type=1&device_id=&social_type=&social_id=
+
+         String   url = JsonApiHelper.BASEURL + JsonApiHelper.LOGIN_CHECK
                  + "email=" + email + "&first_name=" + name + "&mobile=" + number
-                    + "&password=" + edtPassword.getText().toString() + "&login_type=" + socialtype + "&social_id=" + social_id
+                    + "&password=" + edtPassword.getText().toString() + "&login_type=" + socialtype + "&social_id=" + social_id+"&social_type="+socialtype
                     + "&gcm=" + AppUtils.getGcmRegistrationKey(mActivity) + "&device_type=" + AppConstant.DEVICE_TYPE;
 
-            new CommonAsyncTask(1, mActivity, LoginActivity.this).getquery(url);
+            new CommonAsyncTask(2, mActivity, LoginActivity.this).getquery(url);
 
         } else {
             Toast.makeText(mActivity, getResources().getString(R.string.message_network_problem), Toast.LENGTH_SHORT).show();
@@ -354,6 +379,41 @@ public class LoginActivity extends AppCompatActivity implements ApiResponse {
 
         try {
             if (method == 1) {
+
+                JSONObject commandResult = response.getJSONObject("commandResult");
+
+                if (commandResult.getString("success").equalsIgnoreCase("1")) {
+
+                    JSONObject data = commandResult.getJSONObject("data");
+
+                    AppUtils.setUserId(mActivity, data.getString("UserId"));
+                    AppUtils.setUserRole(mActivity, data.getString("UserType"));
+                    AppUtils.setUserName(mActivity, data.getString("Name"));
+                    AppUtils.setUseremail(mActivity, data.getString("Email"));
+                    AppUtils.setUserMobile(mActivity, data.getString("Mobile"));
+                    AppUtils.setUserImage(mActivity, data.getString("ProfilePic"));
+                    AppUtils.setCategories(mActivity, data.getJSONArray("services").toString());
+
+                    if (data.has("Business_profile")) {
+                        JSONObject business_profile = data.getJSONObject("Business_profile");
+                        if (business_profile.has("Id")) {
+                            AppUtils.setBusinessId(mActivity, business_profile.getString("Id"));
+                        }
+                    }
+
+                    if (AppUtils.getUserRole(mActivity).equalsIgnoreCase(AppConstant.FREELANCER)) {
+                        startActivity(new Intent(mActivity, VendorDashboard.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                        finish();
+                    } else if (AppUtils.getUserRole(mActivity).equalsIgnoreCase(AppConstant.USER)) {
+                        startActivity(new Intent(mActivity, UserDashboard.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                        finish();
+                    }
+
+                } else {
+
+                    Toast.makeText(mActivity, commandResult.getString("message"), Toast.LENGTH_SHORT).show();
+                }
+            }else   if (method == 2) {
 
                 JSONObject commandResult = response.getJSONObject("commandResult");
 

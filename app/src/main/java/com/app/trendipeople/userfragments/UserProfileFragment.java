@@ -129,7 +129,6 @@ public class UserProfileFragment extends BaseFragment implements ApiResponse {
 
 
     private void getProfile() {
-
         // http://dev.stackmindz.com/trendi/api/getProfile.php?user_id=210
         if (AppUtils.isNetworkAvailable(mActivity)) {
 
