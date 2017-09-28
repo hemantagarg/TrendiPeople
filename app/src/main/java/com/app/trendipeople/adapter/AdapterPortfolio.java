@@ -1,6 +1,7 @@
 package com.app.trendipeople.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.trendipeople.R;
+import com.app.trendipeople.activities.ZoomImageAcivity;
 import com.app.trendipeople.models.Images;
 import com.squareup.picasso.Picasso;
 
@@ -52,6 +54,20 @@ public class AdapterPortfolio extends RecyclerView.Adapter<AdapterPortfolio.Cust
         } else {
             customViewHolder.text_hashtag.setVisibility(View.GONE);
         }
+
+        customViewHolder.image_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, ZoomImageAcivity.class);
+                try {
+                    intent.putExtra("imageurl", detail.get(i).getImage());
+                    mContext.startActivity(intent);
+                } catch (Exception e) {
+                    Log.w(getClass().toString(), e);
+                }
+            }
+        });
+
     }
 
     @Override
